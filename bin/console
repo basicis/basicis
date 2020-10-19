@@ -1,0 +1,7 @@
+<?php
+require_once "vendor/autoload.php";
+use Basicis\Basicis as App;
+
+//Start App on console mode
+$app = new App("console", $argv);
+$app->run();
