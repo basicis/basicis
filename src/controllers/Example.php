@@ -2,12 +2,13 @@
 namespace App\Controllers;
 
 use Basicis\Controller\Controller;
+use Basicis\Basicis as App;
 
 class Example extends Controller
 {
 
-    public function index()
+    public function index(App &$app, ?object $args)
     {
-        echo "Test Example Controller";
+        return $app->getResponse()->withStatus(401);
     }
 }

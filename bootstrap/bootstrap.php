@@ -25,7 +25,7 @@ $app->setArgs(
       'env' => $_ENV ?? ['APP_ENV' => 'dev'],
       'cookies' => $_COOKIE ?? [],
       'sessions' => $_SESSION ?? [],
-      'files' => $_FILES ?? []
+      'files' => $_FILES ?? [],
     ]
 );
 
@@ -34,7 +34,8 @@ $app->setArgs(
  */
 $app->setControllers([
   //key is required
-  "example" => "App\\Middlewares\\Example",
+  "example" => "App\\Controllers\\Example",
+  //...
 ]);
 
 
@@ -45,18 +46,21 @@ $app->setControllers([
 $app->setBeforeMiddlewares([
   //key no is required
   new App\Middlewares\BeforeExample(),
+  //...
 ]);
 
 //om oute middlweares
 $app->setMiddlewares([
   //only here, key is required
   "example" => new App\Middlewares\Example(),
+  //...
 ]);
 
 //After route middlweares
 $app->setAfterMiddlewares([
   //key no is required
   new App\Middlewares\AfterExample(),
+  //...
 ]);
 
 return $app;

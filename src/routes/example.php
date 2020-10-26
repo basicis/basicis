@@ -14,3 +14,5 @@ $this->get('/home/{id}int', function () {
 }, 'example');
 
 $this->get('/controller', 'example@index');
+
+$this->post('/controller/{id}:int', 'example@index');
