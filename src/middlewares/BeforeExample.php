@@ -17,9 +17,6 @@ class BeforeExample extends Middleware
          * All persoal middleware code implementation
          *
          */
-        if ($handler->getRoute()->getArguments() !== null) {
-            return ResponseFactory::create(200);
-        }
-        return ResponseFactory::create(401);
+        return $handler->getResponse();
     }
 }

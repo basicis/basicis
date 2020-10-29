@@ -9,6 +9,6 @@ class Example extends Controller
 
     public function index(App &$app, ?object $args)
     {
-        return $app->getResponse()->withStatus(401);
+        return $app->getResponse()->withStatus(201);
     }
 }

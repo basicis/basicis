@@ -1,7 +1,7 @@
 <?php
 
-$this->get('/', function () {
-    echo 'Home teste ok!';
+$this->get('/', function ($app) {
+    return $app->write('Home teste ok!', 201);
 });
 
 $this->get('/home/{text}string', function () {

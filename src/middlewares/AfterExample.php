@@ -17,6 +17,6 @@ class AfterExample extends Middleware
          * All persoal middleware code implementation
          *
          */
-        return ResponseFactory::create(200);
+        return $handler->getResponse();
     }
 }
