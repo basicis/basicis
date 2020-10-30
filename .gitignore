@@ -1,1 +1,6 @@
 vendor/
+log/
+storage/public/*
+storage/private/*
+.env.*
+!.env.example

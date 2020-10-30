@@ -1,0 +1,10 @@
+{%  set title = "Welcome" %}
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Welcome!</h1>
+  <h2>Teste Function {{ test() }}!</h2>
+
+  {% if testIsTrue(true) %}
+    <p>Teste Function True!</p>
+  {% endif %}
+{% endblock %}

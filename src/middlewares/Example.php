@@ -4,12 +4,11 @@ namespace App\Middlewares;
 use Psr\Http\Message\ResponseInterface;
 use Basicis\Http\Message\ResponseFactory;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use Basicis\Http\Server\Middleware;
 
 class Example extends Middleware
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         /**
          *
