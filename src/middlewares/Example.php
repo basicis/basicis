@@ -9,7 +9,7 @@ use Basicis\Http\Server\Middleware;
 
 class Example extends Middleware
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $app): ResponseInterface
     {
         /**
          *
@@ -17,6 +17,13 @@ class Example extends Middleware
          * All persoal middleware code implementation
          *
          */
-        return ResponseFactory::create(200);
+
+        /*
+            if ($app->getRequest()->getParsedBody()["teste"] !== null) {
+                return $app->getResponse();
+            }
+        */
+
+        return $app->getResponse();
     }
 }

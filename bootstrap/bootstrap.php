@@ -29,6 +29,7 @@ $app->setArgs(
     ]
 );
 
+
 /**
  * Setting Controllers definitions
  */
@@ -39,28 +40,42 @@ $app->setControllers([
 ]);
 
 
+
 /**
  * Setting Middlewares definitions
  */
-//Before route middlweares
+// Before route middlweares
 $app->setBeforeMiddlewares([
   //key no is required
   new App\Middlewares\BeforeExample(),
   //...
 ]);
 
-//om oute middlweares
+// Route middlweares
 $app->setMiddlewares([
   //only here, key is required
   "example" => new App\Middlewares\Example(),
   //...
 ]);
 
-//After route middlweares
+// After route middlweares
 $app->setAfterMiddlewares([
   //key no is required
   new App\Middlewares\AfterExample(),
   //...
 ]);
+
+
+/**
+ * Setting view filters, for html template view
+ */
+$app->setViewFilters([
+  //key is required
+  "test" => function ($test = true) {
+    return $test;
+  },
+  //...
+]);
+
 
 return $app;

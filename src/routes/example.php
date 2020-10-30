@@ -1,18 +1,27 @@
 <?php
-
+// Index example
 $this->get('/', function ($app) {
-    return $app->write('Home teste ok!', 201);
+    $app->json(["teste" => 'Home teste ok!', "teste2" => 'Home teste2 ok!'], 201);
 });
 
-$this->get('/home/{text}string', function () {
-    echo "Home text arg string: {$this->args->text}";
+//Endpoint with param string named of 'text'
+$this->get('/home/{text}string', function ($app, $args) {
+    $app->write("Home text arg string: " . $args->text);
 });
 
-$this->get('/home/{id}int', function () {
-    var_dump($this);
-    echo "Home id with arg int: ".$this->args->id ?? "0";
+//Endpoint with param integer|int named of 'id'
+$this->get('/home/{id}int', function ($app, $args) {
+    $app->write("Home id with arg int: " . $args->id);
 }, 'example');
 
-$this->get('/controller', 'example@index');
+//The caracters '::' and '@' have the same function calling an Controller
+$this->get('/controller/{id}:int', 'example::index', 'example');
+$this->post('/controller/{id}:int', 'example@index', 'example');
 
-$this->post('/controller/{id}:int', 'example@index');
+//
+$this->post('/example/{id}:int', function ($app, $args) {
+    if ($args->teste !== null) {
+        return $app->json($args, 200);
+    }
+    return $app->json("Teste id: ". $args->id, 200);
+});
