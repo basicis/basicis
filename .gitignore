@@ -1,4 +1,9 @@
 vendor/
 log/
+<<<<<<< HEAD
+=======
+storage/public/*
+storage/private/*
+>>>>>>> origin/home
 .env.*
 !.env.example
