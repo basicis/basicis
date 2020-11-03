@@ -2,9 +2,13 @@
 {% extends "layout.html" %}
 {% block content %}
   <h1>Welcome!</h1>
-  <h2>Teste Function {{ test() }}!</h2>
 
-  {% if testIsTrue(true) %}
-    <p>Teste Function True!</p>
+  <p>Teste variable text: <b>{{test}}</b>!</p>
+  {% if isTrue(true) == true %}
+    <p>Teste filter function <b>True</b>!</p>
+  {% endif %}
+
+  {% if isTrue(false) == false %}
+    <p>Teste filter function <b>False</b>!</p>
   {% endif %}
 {% endblock %}

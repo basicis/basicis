@@ -8,10 +8,11 @@ class Example extends Controller
 
     public function index($app, $args)
     {
-        if (isset($args->teste)) {
-            return $app->json($args, 200);
-        }
-        
-        return $app->json("Teste id: ". $args->id, 200);
+        return $app->view("welcome", ["test" => "Teste OK!"]);
+    }
+
+    public function test($app, $args)
+    {
+        return $app->view("welcome2", ["test" => $args->id ?? $args->text]);
     }
 }

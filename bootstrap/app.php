@@ -76,13 +76,16 @@ $app->setAfterMiddlewares([
  * Setting view filters, for html template view
  */
 $app->setViewFilters([
-  //key is required
-  "test" => function ($test = true) {
-    return "Test Ok 2!";
+  //here, key is required
+  "isTrue" => function ($test = true) {
+    return $test ? true : false;
   },
-  "testIsTrue" => function ($test = true) {
-    return $test ;
+  "isId" => function ($value) {
+    return is_numeric($value);
   },
+  "isText" => function ($value) {
+    return is_string($value) && !is_numeric($value);
+  }
   //...
 ]);
 

@@ -16,13 +16,6 @@ class Example extends Middleware
          * All persoal middleware code implementation
          *
          */
-
-        /*
-            if ($app->getRequest()->getParsedBody()["teste"] !== null) {
-                return $app->getResponse();
-            }
-        */
-
-        return $app->getResponse();
+        return ResponseFactory::create(200);
     }
 }
