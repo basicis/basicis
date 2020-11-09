@@ -26,11 +26,13 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-
-      - name: Deploy on dev server
-        env:
-          ID_RSA: ${{ secrets.SSH_ID_RSA }}
-          ID_RSA_PUB: ${{ secrets.SSH_ID_RSA_PUB }}
-          SSH_URL: ${{ secrets.SSH_URL }}
-        run: |
-          bash $GITHUB_WORKSPACE/.github/scripts/deploy.sh
+      
+      - name: Deploy on dev server 🚀
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_ID_RSA }}
+          port: 22
+          script: |
+            ./basicis-github-action.sh
