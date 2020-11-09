@@ -3,8 +3,8 @@ namespace App\Test\Controllers;
 
 use PHPUnit\Framework\TestCase;
 use App\Controllers\Example;
+use Basicis\Basicis as App;
 use Psr\Http\Message\ResponseInterface;
-use Basicis\Basicis;
 
 /**
  * Class ExampleTest
@@ -12,8 +12,16 @@ use Basicis\Basicis;
 
 class ExampleTest extends TestCase
 {
-    /**
+
+     /**
      * $app variable
+     *
+     * @var App
+     */
+    private $app;
+
+    /**
+     * $controller variable
      *
      * @var Example
      */
@@ -21,28 +29,42 @@ class ExampleTest extends TestCase
 
     public function __constuct()
     {
-        self::__construct();
+        parent::__construct();
+
         $this->controller = new Example();
+        $this->app = App::createApp([
+            'uri' => '/',
+            'method' => 'GET',
+        ]);
+
+        $this->app->setViewFilters([
+            //here, key is required
+            "isTrue" => function ($test = true) {
+              return $test ? true : false;
+            },
+            "isId" => function ($value) {
+              return is_numeric($value);
+            },
+            "isText" => function ($value) {
+              return is_string($value) && !is_numeric($value);
+            }
+            //...
+        ]);
     }
 
     public function testIndex()
     {
-        $controller = new Example();
 
         $this->assertInstanceOf(
             ResponseInterface::class,
-            $controller->index(
-                Basicis::createApp()->setArgs(
-                    [
-                        'uri' => '/',
-                        'method' => 'GET',
-                    ]
-                ),
+            $this->controller->index(
+                $this->app,
                 (object) [
                     "teste" => "ok!",
                     "teste2" =>"ok2!"
                 ]
             )
         );
+    
     }
 }
