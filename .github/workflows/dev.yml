@@ -1,4 +1,4 @@
-name: Basicis | CI - Dev
+name: Basicis | CI - Dev 🛠️
 on: 
   push: 
     branchs: 
@@ -16,6 +16,6 @@ jobs:
       - name: Composer 🔧
         uses: php-actions/composer@v1
 
-      - name: PHPUnit Tests ✅
+      - name: PHPUnit Tests 🧪
         run: |
           bash $GITHUB_WORKSPACE/.github/scripts/test.sh

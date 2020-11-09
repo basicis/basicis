@@ -36,7 +36,7 @@
       "dev": "composer dev:start",
       "console" : "php bin/console",
       "log" : "bash bin/log",
-      "test" : "vendor/bin/phpunit test",
+      "test" : "vendor/bin/phpunit --do-not-cache-result --no-logging test",
       "tests" : "bash bin/test",
       "phpcs" : "vendor/bin/phpcs --standard=PSR2",
       "phpdoc": "vendor/bin/phpdoc",
