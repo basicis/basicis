@@ -1,0 +1,21 @@
+name: Basicis | CI - Dev
+on: 
+  push: 
+    branchs: 
+     - dev
+  pull_request:
+    branchs: 
+      - dev
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Composer 🔧
+        uses: php-actions/composer@v1
+
+      - name: PHPUnit Tests ✅
+        run: |
+          bash $GITHUB_WORKSPACE/.github/scripts/test.sh
