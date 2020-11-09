@@ -27,7 +27,7 @@ class ExampleTest extends TestCase
      */
     private $controller;
 
-    public function __constuct()
+    public function __construct()
     {
         parent::__construct();
 
