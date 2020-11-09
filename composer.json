@@ -14,7 +14,7 @@
 
   "require": {
       "php": "^7.3",
-      "basicis/core" : "dev-home"
+      "basicis/core" : "dev-master"
   },
 
   "require-dev": {
