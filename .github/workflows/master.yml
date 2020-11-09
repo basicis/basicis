@@ -1,0 +1,36 @@
+name: Basicis | CI - Master 🎖️
+on: 
+  push: 
+    branchs: 
+     - master
+  pull_request:
+    branchs: 
+      - master  
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Composer 🔧
+        uses: php-actions/composer@v1
+
+      - name: PHPUnit Tests 🧪
+        run: |
+          bash $GITHUB_WORKSPACE/.github/scripts/test.sh
+
+  deploy_on_dev_server:
+    needs: test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Deploy on dev server
+        env:
+          ID_RSA: ${{ secrets.SSH_ID_RSA }}
+          ID_RSA_PUB: ${{ secrets.SSH_ID_RSA_PUB }}
+          SSH_URL: ${{ secrets.SSH_URL }}
+        run: |
+          bash $GITHUB_WORKSPACE/.github/scripts/deploy.sh
