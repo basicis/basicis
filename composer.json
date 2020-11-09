@@ -13,8 +13,8 @@
   ],
 
   "require": {
-      "php": "^7.3",
-      "basicis/core" : "dev-master"
+      "php": "^7.2",
+      "basicis/core" : "dev-home"
   },
 
   "require-dev": {
