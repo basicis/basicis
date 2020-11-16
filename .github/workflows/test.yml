@@ -18,4 +18,4 @@ jobs:
 
       - name: PHPUnit Tests 🧪
         run: |
-          composer Test
+          composer test
