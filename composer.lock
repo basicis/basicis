@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/basicis/core.git",
-                "reference": "882f7dd508f475641833b59e7437bd608d23d2e8"
+                "reference": "52532528d9c425d2b680771daad8be5ee13e9aca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basicis/core/zipball/882f7dd508f475641833b59e7437bd608d23d2e8",
-                "reference": "882f7dd508f475641833b59e7437bd608d23d2e8",
+                "url": "https://api.github.com/repos/basicis/core/zipball/52532528d9c425d2b680771daad8be5ee13e9aca",
+                "reference": "52532528d9c425d2b680771daad8be5ee13e9aca",
                 "shasum": ""
             },
             "require": {
@@ -40,10 +40,7 @@
             },
             "bin": [
                 "bin/server",
-                "bin/test",
-                "vendor/bin/phpcs",
-                "vendor/bin/phpdoc-md",
-                "vendor/bin/doctrine"
+                "bin/test"
             ],
             "type": "library",
             "autoload": {
@@ -63,7 +60,7 @@
                 }
             ],
             "description": "Basicis PHP Framework | Core",
-            "time": "2020-11-16T21:09:10+00:00"
+            "time": "2020-11-16T22:11:02+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
