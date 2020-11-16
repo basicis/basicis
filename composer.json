@@ -41,7 +41,8 @@
       "tests" : "bash bin/test",
       "phpcs" : "vendor/bin/phpcs --standard=PSR2",
       "phpdoc": "vendor/bin/phpdoc",
-      "phpdocs": "php -S 0.0.0.0:8000 -t docs/"
+      "phpdocs": "php -S 0.0.0.0:8000 -t docs/",
+      "doctrine" : "vendor/bin/doctrine"
   },
   "config": {
       "process-timeout": 0

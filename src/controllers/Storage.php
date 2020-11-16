@@ -13,7 +13,7 @@ class Storage extends Controller
          //Search and list public files
         $files = [];
         foreach (glob($app->path() . "storage/public/*") as $file) {
-            $stream = StreamFactory::createStreamFromFile($file, "r");
+            $stream = (new StreamFactory)->createStreamFromFile($file, "r");
 
             $files[] = [
               "filename" => pathinfo($file)["basename"],
