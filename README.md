@@ -5,7 +5,7 @@
 
 
 <p align="center">
-    <img width="160" src="docs/img/logo.png"/>
+    <img width="160" src="public/assets/img/logo.png"/>
 </p>
 
 <p align="center">
@@ -31,16 +31,16 @@ As the name says, it is made to be basic and direct.
 ## Get Started
 
 Cteate a new project with Composer
-```
+```bash
 composer create-project basicis/basicis <app_dir_name>
 ```
 Case, could not find package basicis/basicis with stability stable use:
-```
+```bash
 composer create-project basicis/basicis <app_dir_name> -s dev
 ```
 
 Or with Git clone
-```
+```bash
 git clone http://github.com/basicis/basicis.git
 ```
 

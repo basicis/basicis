@@ -1,11 +1,11 @@
-name: Basicis | CI - Dev 🛠️
+name: Basicis | CI  🛠️
 on: 
   push: 
     branchs: 
-     - dev
+      - [master, dev]
   pull_request:
     branchs: 
-      - dev
+      - [master, dev]
 jobs:
   test:
     runs-on: ubuntu-18.04
@@ -18,4 +18,4 @@ jobs:
 
       - name: PHPUnit Tests 🧪
         run: |
-          bash $GITHUB_WORKSPACE/.github/scripts/test.sh
+          composer test
