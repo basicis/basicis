@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/basicis/core.git",
-                "reference": "52532528d9c425d2b680771daad8be5ee13e9aca"
+                "reference": "53f2c73db973d57f63fd8b8a1796b8cd67346ac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basicis/core/zipball/52532528d9c425d2b680771daad8be5ee13e9aca",
-                "reference": "52532528d9c425d2b680771daad8be5ee13e9aca",
+                "url": "https://api.github.com/repos/basicis/core/zipball/53f2c73db973d57f63fd8b8a1796b8cd67346ac8",
+                "reference": "53f2c73db973d57f63fd8b8a1796b8cd67346ac8",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 }
             ],
             "description": "Basicis PHP Framework | Core",
-            "time": "2020-11-16T22:11:02+00:00"
+            "time": "2020-11-28T15:14:56+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -454,12 +454,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "996ab034ca4d4dd386dfb9f7218eab4172a18547"
+                "reference": "79cba0bc0e653005fc9ab5a23624828a803f41fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/996ab034ca4d4dd386dfb9f7218eab4172a18547",
-                "reference": "996ab034ca4d4dd386dfb9f7218eab4172a18547",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/79cba0bc0e653005fc9ab5a23624828a803f41fb",
+                "reference": "79cba0bc0e653005fc9ab5a23624828a803f41fb",
                 "shasum": ""
             },
             "require": {
@@ -471,11 +471,11 @@
             "require-dev": {
                 "doctrine/coding-standard": "^8.1",
                 "jetbrains/phpstorm-stubs": "^2019.1",
-                "phpstan/phpstan": "^0.12.40",
+                "phpstan/phpstan": "^0.12.55",
                 "phpunit/phpunit": "^9.4",
-                "psalm/plugin-phpunit": "^0.10.0",
+                "psalm/plugin-phpunit": "^0.13.0",
                 "symfony/console": "^2.0.5|^3.0|^4.0|^5.0",
-                "vimeo/psalm": "^3.17.2"
+                "vimeo/psalm": "^4.1"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -553,7 +553,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-16T16:58:23+00:00"
+            "time": "2020-11-16T22:44:46+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2364,12 +2364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66"
+                "reference": "caabbf0be682f5b54056d7f8467397d99f14be70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/fba64139db67123c7a57072e5f8d3db10d160b66",
-                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/caabbf0be682f5b54056d7f8467397d99f14be70",
+                "reference": "caabbf0be682f5b54056d7f8467397d99f14be70",
                 "shasum": ""
             },
             "require": {
@@ -2432,7 +2432,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-14T15:57:31+00:00"
+            "time": "2020-11-17T15:15:31+00:00"
         }
     ],
     "packages-dev": [
@@ -4263,12 +4263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "99b0339bce7eaae8b5285398d5f1492da734d1ac"
+                "reference": "6f2a22d75eed4b5c1ada6926bee05e8d198df172"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/99b0339bce7eaae8b5285398d5f1492da734d1ac",
-                "reference": "99b0339bce7eaae8b5285398d5f1492da734d1ac",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6f2a22d75eed4b5c1ada6926bee05e8d198df172",
+                "reference": "6f2a22d75eed4b5c1ada6926bee05e8d198df172",
                 "shasum": ""
             },
             "require": {
@@ -4306,7 +4306,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-11-03T22:22:47+00:00"
+            "time": "2020-11-17T21:10:09+00:00"
         },
         {
             "name": "theseer/tokenizer",

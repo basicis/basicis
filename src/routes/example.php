@@ -4,13 +4,13 @@
  * Home examples
  * The caracters "::" and "@" have the same function calling an Controller
  */
-$this->get("/", "example::index");
+$app->get("/", "example::index");
 
-$this->get("/home", "example::index");
+$app->get("/home", "example::index");
 
-$this->get("/home/{id}:int", "example@test");
+$app->get("/home/{id}:int", "example@test");
 
-$this->get("/home/{text}:string", function ($app, $args) {
+$app->get("/home/{text}:string", function ($app, $args) {
     return $app->controller("example@test", $args);
 });
 
@@ -19,10 +19,10 @@ $this->get("/home/{text}:string", function ($app, $args) {
  * File storage examples
  * The caracters "::" and "@" have the same function calling an Controller
  */
-$this->post("/storage", "storage::upload");
+$app->post("/storage", "storage::upload");
 
-$this->get("/storage/{filename}:string", "storage::download");
+$app->get("/storage/{filename}:string", "storage::download");
 
-$this->get("/storage", "storage::index", "example");
+$app->get("/storage", "storage::index", "example");
 
-$this->delete("/storage/{filename}:string", "storage::delete");
+$app->delete("/storage/{filename}:string", "storage::delete");

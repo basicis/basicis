@@ -12,26 +12,29 @@
 
 require_once "../vendor/autoload.php";
 use Basicis\Basicis;
+use Basicis\Http\Message\Uri;
+use Basicis\Http\Message\ServerRequestFactory;
 
 /**
  * Create Basicis App and setting arguments
  */
-$app = Basicis::createApp();
 
-$appArguments = [
-  'uri' => $_SERVER['REQUEST_URI'] ?? '/',
-  'method' => $_SERVER['REQUEST_METHOD'] ?? 'GET',
-  'cookie' => $_COOKIE ?? [],
-  'session' => $_SESSION ?? [],
-  'files' => $_FILES ?? [],
-  'env' => $_ENV ?? [
-    "APP_ENV" =>"dev",
-    "APP_TIMEZONE" =>  "America/Recife",
-  ],
-];
 
-$app->setArgs($appArguments);
+//Creating Server Request
+$request = ServerRequestFactory::create(
+    $_SERVER['REQUEST_METHOD'],
+    (new Uri())
+    ->withScheme(explode('/', $_SERVER['SERVER_PROTOCOL'])[0])
+    ->withHost($_SERVER['HTTP_HOST'])
+    ->withPort($_SERVER['SERVER_PORT'])
+    ->withPath($_SERVER['REQUEST_URI'])
+)
+->withHeaders(getallheaders())
+->withParsedBody(Basicis::input("php://input"))
+->withUploadedFiles($_FILES)
+->withCookieParams($_COOKIE);
 
+$app = Basicis::createApp($request);
 
 
 /**
