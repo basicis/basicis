@@ -7,7 +7,7 @@
  * @package  Basicis/Core
  * @author   Messias Dias <https://github.com/messiasdias> <messiasdias.ti@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://github.com/basicis/core 
+ * @link     https://github.com/basicis/core
  */
 
 use Basicis\Basicis as App;
@@ -17,7 +17,6 @@ $app = require_once "../bootstrap/app.php";
 //Run App
 if ($app instanceof App) {
     $app->run();
-    $app->output($app->request(), $app->response(), "php://output");
     exit;
 }
 

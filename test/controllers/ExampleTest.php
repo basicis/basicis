@@ -27,34 +27,39 @@ class ExampleTest extends TestCase
      */
     private $controller;
 
+    /**
+     * Function __construct
+     */
     public function __construct()
     {
         parent::__construct();
 
         $this->controller = new Example();
-        $this->app = App::createApp([
-            'uri' => '/',
-            'method' => 'GET',
-        ]);
+        $this->app = App::createApp();
 
         $this->app->setViewFilters([
             //here, key is required
             "isTrue" => function ($test = true) {
-              return $test ? true : false;
+                return $test ? true : false;
             },
             "isId" => function ($value) {
-              return is_numeric($value);
+                return is_numeric($value);
             },
             "isText" => function ($value) {
-              return is_string($value) && !is_numeric($value);
+                return is_string($value) && !is_numeric($value);
             }
             //...
         ]);
     }
 
+
+    /**
+     * Function testIndex
+     *
+     * @return void
+     */
     public function testIndex()
     {
-
         $this->assertInstanceOf(
             ResponseInterface::class,
             $this->controller->index(
@@ -65,6 +70,5 @@ class ExampleTest extends TestCase
                 ]
             )
         );
-    
     }
 }

@@ -60,4 +60,18 @@ class Example extends Controller
     {
         return $app->view("welcome2", ["test" => $args->text]);
     }
+
+
+      /**
+     * Function testJson
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/json", "GET")
+     */
+    public function testJson($app, $args)
+    {
+        return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
+    }
 }

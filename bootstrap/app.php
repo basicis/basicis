@@ -3,6 +3,12 @@
  * Bootstrap Basicis App
  * PHP version 7
  *
+ * - Create Basicis App and setting arguments
+ * - Setting Controllers definitions
+ * - Setting Middlewares definitions
+ * - Setting view filters, for html template view
+ * - And finally, Return the Basicis $app instance created for be imported and run on public/index.php file
+ *
  * @category Basicis/Core
  * @package  Basicis/Core
  * @author   Messias Dias <https://github.com/messiasdias> <messiasdias.ti@gmail.com>
@@ -16,25 +22,32 @@ use Basicis\Http\Message\Uri;
 use Basicis\Http\Message\ServerRequestFactory;
 
 /**
- * Create Basicis App and setting arguments
+ * $app variable
+ * Create an instance of Basicis\Basicis and setting arguments
+ * @var Basicis $app
  */
+$app = Basicis::createApp(
+    //Creating ServerRequest and Uri into this
+    ServerRequestFactory::create(
+        $_SERVER['REQUEST_METHOD'],
+        (new Uri())
+            ->withScheme(explode('/', $_SERVER['SERVER_PROTOCOL'])[0] ?? "http")
+            ->withHost($_SERVER['HTTP_HOST'] ?? "localhost")
+            ->withPort($_SERVER['SERVER_PORT'] ?? null)
+            ->withPath($_SERVER['REQUEST_URI'])
+    )
+    ->withHeaders(getallheaders())
+    ->withUploadedFiles($_FILES)
+    ->withCookieParams($_COOKIE),
+    //Setting app optionals flags
+    [
+      "appDescription" => $_ENV['APP_DESCRIPTION'] ?? "Basicis Framework!",
+      "mode" => $_ENV['APP_ENV'] ?? "dev",
+      "timezone" => $_ENV["APP_TIMEZONE"] ?? "America/Recife"
+    ]
+);
 
 
-//Creating Server Request
-$request = ServerRequestFactory::create(
-    $_SERVER['REQUEST_METHOD'],
-    (new Uri())
-    ->withScheme(explode('/', $_SERVER['SERVER_PROTOCOL'])[0])
-    ->withHost($_SERVER['HTTP_HOST'])
-    ->withPort($_SERVER['SERVER_PORT'])
-    ->withPath($_SERVER['REQUEST_URI'])
-)
-->withHeaders(getallheaders())
-->withParsedBody(Basicis::input("php://input"))
-->withUploadedFiles($_FILES)
-->withCookieParams($_COOKIE);
-
-$app = Basicis::createApp($request);
 
 
 /**
@@ -42,6 +55,7 @@ $app = Basicis::createApp($request);
  */
 $app->setControllers([
   //Key required for use in direct calls via Basicis App instance
+  // Ex: $app->controller("keyContName@method", [object|array|null] $args)
   "example" => "App\\Controllers\\Example",
   "storage" => "App\\Controllers\\Storage",
   //"App\\Controllers\\Storage",
@@ -94,4 +108,7 @@ $app->setViewFilters([
 ]);
 
 
+/**
+ * Return the Basicis $app instance created for be imported and run on public/index.php file
+ */
 return $app;
