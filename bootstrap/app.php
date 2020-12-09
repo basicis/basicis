@@ -41,9 +41,10 @@ $app = Basicis::createApp($request);
  * Setting Controllers definitions
  */
 $app->setControllers([
-  //key is required
+  //Key required for use in direct calls via Basicis App instance
   "example" => "App\\Controllers\\Example",
   "storage" => "App\\Controllers\\Storage",
+  //"App\\Controllers\\Storage",
   //...
 ]);
 

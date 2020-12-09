@@ -1,9 +1,9 @@
 <?php
 namespace App\Middlewares;
 
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Basicis\Http\Message\ResponseFactory;
-use Psr\Http\Message\ServerRequestInterface;
 use Basicis\Http\Server\Middleware;
 
 class Example extends Middleware

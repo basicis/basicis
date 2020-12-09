@@ -17,6 +17,7 @@ $app = require_once "../bootstrap/app.php";
 //Run App
 if ($app instanceof App) {
     $app->run();
+    $app->output($app->request(), $app->response(), "php://output");
     exit;
 }
 
