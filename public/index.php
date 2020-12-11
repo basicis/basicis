@@ -7,7 +7,7 @@
  * @package  Basicis/Core
  * @author   Messias Dias <https://github.com/messiasdias> <messiasdias.ti@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     https://github.com/basicis/core 
+ * @link     https://github.com/basicis/core
  */
 
 use Basicis\Basicis as App;
