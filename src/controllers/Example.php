@@ -42,7 +42,7 @@ class Example extends Controller
      * @return void
      * @Route("/home/{id}:", "GET")
      */
-    public function home2($app, $args)
+    public function testArgId($app, $args)
     {
         return $app->view("welcome2", ["test" => $args->id]);
     }
@@ -56,13 +56,13 @@ class Example extends Controller
      * @return void
      * @Route("/home/{text}:string", "GET")
      */
-    public function test($app, $args)
+    public function testArgText($app, $args)
     {
         return $app->view("welcome2", ["test" => $args->text]);
     }
 
 
-      /**
+    /**
      * Function testJson
      *
      * @param App $app

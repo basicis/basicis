@@ -99,6 +99,26 @@ class Storage extends Controller
     }
 
 
+     /**
+     * Function download
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/assets/{dirname}:string/{filename}:string", "GET")
+     */
+    public function assets($app, $args)
+    {
+        $filename = sprintf(
+            "%s%s%s",
+            App::path(),
+            "storage/public",
+            str_replace("-", ".", $args->path),
+        );
+        return $app->clientFileDownload($filename);
+    }
+
+
 
     /**
      * Function delete
