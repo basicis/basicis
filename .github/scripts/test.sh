@@ -1,5 +1,3 @@
- #!/bin/bash
-wget https://getcomposer.org/composer-stable.phar &&
-sudo mv composer-stable.phar /bin/composer &&
+#!/bin/bash
 echo ENV_TEST=ok > .env &&
 composer test

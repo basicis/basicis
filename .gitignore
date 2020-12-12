@@ -1,7 +1,6 @@
 vendor/
 log/
-docs/*
-!docs/img/logo.png
+docs/
 .env*
 !.env.example
 storage/public/*

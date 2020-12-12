@@ -1,3 +1,0 @@
-#!/bin/bash/
-file=$(date +"log/%Y/%m/%d.log")
-watch --interval 0 "cat $file"

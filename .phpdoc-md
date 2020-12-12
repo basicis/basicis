@@ -1,0 +1,23 @@
+<?php
+return (object)[
+    'rootNamespace' => 'App', 
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => [
+        
+        /* App\Models */
+        '\App\Models\Example',
+
+        /* App\Controllers */
+        '\App\Controllers\Example',
+        '\App\Controllers\Storage',
+
+
+         /* App\Middlewares */
+         '\App\Middlewares\BeforeExample',
+         '\App\Middlewares\AfterExample',
+         '\App\Middlewares\Example',
+
+        //...
+    ],
+];

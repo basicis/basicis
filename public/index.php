@@ -15,7 +15,7 @@ use Basicis\Basicis as App;
 $app = require_once "../bootstrap/app.php";
 
 //Run App
-if (@$app instanceof App) {
+if ($app instanceof App) {
     $app->run();
     exit;
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
 use Basicis\Http\Message\StreamFactory;
 use Basicis\Http\Message\UploadedFileFactory;
@@ -8,12 +9,20 @@ use Basicis\Http\Message\UploadedFileFactory;
 class Storage extends Controller
 {
 
+    /**
+     * Function index
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/storage", "GET, "example")
+     */
     public function index($app, $args)
     {
          //Search and list public files
         $files = [];
         foreach (glob($app->path() . "storage/public/*") as $file) {
-            $stream = StreamFactory::createStreamFromFile($file, "r");
+            $stream = (new StreamFactory)->createStreamFromFile($file, "r");
 
             $files[] = [
               "filename" => pathinfo($file)["basename"],
@@ -30,6 +39,14 @@ class Storage extends Controller
     }
 
 
+    /**
+     * Function upload
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/storage", "POST")
+     */
     public function upload($app, $args)
     {
         $files = [];
@@ -51,6 +68,15 @@ class Storage extends Controller
     }
 
 
+
+    /**
+     * Function download
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/storage/{filename}:string", "GET")
+     */
     public function download($app, $args)
     {
         //Search file
@@ -73,6 +99,35 @@ class Storage extends Controller
     }
 
 
+     /**
+     * Function download
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/assets/{dirname}:string/{filename}:string", "GET")
+     */
+    public function assets($app, $args)
+    {
+        $filename = sprintf(
+            "%s%s%s",
+            App::path(),
+            "storage/public",
+            str_replace("-", ".", $args->path),
+        );
+        return $app->clientFileDownload($filename);
+    }
+
+
+
+    /**
+     * Function delete
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/storage/{filename}:string", "DELETE")
+     */
     public function delete($app, $args)
     {
         //Search file
