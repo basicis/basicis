@@ -3187,27 +3187,13 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                <<
-                <<
-                << < HEAD "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/master" ===
-                    ===
-                    =
-                    "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.5" >>>
-                    >>>
-                    > fdd3b4150e69737aff037e5b95cf7fec23aecc06
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/master"
             },
             "funding": [{
                 "url": "https://github.com/sebastianbergmann",
                 "type": "github"
             }],
-            <<
-            <<
-            << < HEAD "time": "2020-12-09T08:37:03+00:00" ===
-                ===
-                =
-                "time": "2020-11-28T06:44:49+00:00" >>>
-                >>>
-                > fdd3b4150e69737aff037e5b95cf7fec23aecc06
+            "time": "2020-12-09T08:37:03+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
