@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/basicis/core.git",
-                "reference": "25813d633265fe8031a3ae1f4e51030bfb750710"
+                "reference": "c84ffe937bd34512de3b366b78992a9c58a77a91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basicis/core/zipball/25813d633265fe8031a3ae1f4e51030bfb750710",
-                "reference": "25813d633265fe8031a3ae1f4e51030bfb750710",
+                "url": "https://api.github.com/repos/basicis/core/zipball/c84ffe937bd34512de3b366b78992a9c58a77a91",
+                "reference": "c84ffe937bd34512de3b366b78992a9c58a77a91",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +66,7 @@
                 "issues": "https://github.com/basicis/core/issues",
                 "source": "https://github.com/basicis/core/tree/master"
             },
-            "time": "2020-12-12T20:32:42+00:00"
+            "time": "2020-12-13T09:02:52+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
