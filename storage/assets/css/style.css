@@ -24,6 +24,23 @@ body{
   color: rgba(0,0,0,.3);
 }
 
-p {
+.w100l100 {
+  width: 100%;
+  min-height: 90vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p, .message {
   color: rgba(0,0,0,.7);
 }
+
+.message{
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+
