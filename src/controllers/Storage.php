@@ -19,7 +19,6 @@ class Storage extends Controller
         return str_replace(["%20", " ", "-"], ["_", "_", "."], $filename);
     }
 
-
     /**
      * Function index
      *
