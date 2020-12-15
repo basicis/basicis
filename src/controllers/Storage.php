@@ -8,6 +8,16 @@ use Basicis\Http\Message\UploadedFileFactory;
 
 class Storage extends Controller
 {
+    /**
+     * Function replaceFilename
+     *
+     * @param string $filename
+     * @return string
+     */
+    private function replaceFilename(string $filename) : string
+    {
+        return str_replace(["%20", " ", "-"], ["_", "_", "."], $filename);
+    }
 
     /**
      * Function index
@@ -57,7 +67,7 @@ class Storage extends Controller
                 "%s%s%s",
                 $app->path(),
                 "storage/public/",
-                str_replace(["%20", "(", ")", " "], ["-", "",  "",  "-"], $infile->getClientFilename())
+                $this->replaceFilename($infile->getClientFilename())
             );
             
             $files[$name] = $app->clientFileupload($infile, strtolower($filename));
@@ -66,7 +76,6 @@ class Storage extends Controller
         //return response ok in json format, with files informations
         return $app->json(["files" => $files], 200);
     }
-
 
 
     /**
@@ -79,45 +88,14 @@ class Storage extends Controller
      */
     public function download($app, $args)
     {
-        //Search file
-        $filename = null;
-        $name = str_replace(["%20", "(", ")"], [" ", "\(", "\("], $args->name);
-    
-        foreach (glob($app->path() . "storage/public/*") as $filepath) {
-            if (preg_match("/$name.[a-z0-9]{2,}/", $filepath)) {
-                $filename = $filepath;
-            }
-        }
-
-        //If file exists, this no is null
-        if ($filename !== null) {
-            return $app->clientFileDownload($filename);
-        }
-
-        // if file not found
-        return $app->response(404);
-    }
-
-
-     /**
-     * Function download
-     *
-     * @param App $app
-     * @param object $args
-     * @return void
-     * @Route("/assets/{dirname}:string/{filename}:string", "GET")
-     */
-    public function assets($app, $args)
-    {
         $filename = sprintf(
             "%s%s%s",
             App::path(),
-            "storage/public",
-            str_replace("-", ".", $args->path),
+            "storage/public/",
+            $this->replaceFilename($args->filename)
         );
         return $app->clientFileDownload($filename);
     }
-
 
 
     /**
@@ -130,22 +108,40 @@ class Storage extends Controller
      */
     public function delete($app, $args)
     {
-        //Search file
-        $filename = null;
-        $name = str_replace(["%20", "(", ")"], [" ", "\(", "\("], $args->name);
+        $filename = sprintf(
+            "%s%s%s",
+            App::path(),
+            "storage/public/",
+            $this->replaceFilename($args->filename)
+        );
 
-        foreach (glob($app->path() . "storage/public/*") as $filepath) {
-            if (preg_match("/$name.[a-z0-9]{2,}/", $filepath)) {
-                $filename = $filepath;
-            }
-        }
-
-        //If file exists, this no is null
-        if ($filename !== null &&  unlink($filename)) {
+        //If file exists and this is deleted return success
+        if (file_exists($filename) && unlink($filename)) {
             return $app->json(["success" => true], 200);
         }
 
-        // if file not found or no is deleted
-        return $app->json(["success" => false], 404);
+        //If file not found or no is deleted
+        return $app->json(["success" => false], 404, "File not found!");
+    }
+
+
+     /**
+     * Function assets
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/assets/{dirname}:string/{filename}:string", "GET")
+     */
+    public function assets($app, $args)
+    {
+        $filename = sprintf(
+            "%s%s%s/%s",
+            App::path(),
+            "storage/assets/",
+            $args->dirname,
+            $this->replaceFilename($args->filename)
+        );
+        return $app->clientFileDownload($filename);
     }
 }

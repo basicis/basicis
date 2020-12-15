@@ -1,11 +1,8 @@
 
 # Basicis | Project
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c43dc7aeaa924e65822a1d088af09c70)](https://app.codacy.com/gh/basicis/basicis?utm_source=github.com&utm_medium=referral&utm_content=basicis/basicis&utm_campaign=Badge_Grade)
-
-
 <p align="center">
-    <img width="160" src="public/assets/img/logo.png"/>
+    <img width="160" src="storage/public/img/logo.png"/>
 </p>
 
 <p align="center">

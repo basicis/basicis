@@ -16,8 +16,9 @@ class Example extends Controller
      */
     public function index($app, $args)
     {
-        return $app->view("welcome", ["test" => "Teste OK!"]);
+        return $app->view("welcom", ["test" => "Teste OK!"]);
     }
+
 
 
     /**
@@ -33,6 +34,7 @@ class Example extends Controller
     {
         return $this->index($app, $args);
     }
+
 
     /**
      * Function home2
