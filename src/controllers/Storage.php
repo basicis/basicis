@@ -140,7 +140,7 @@ class Storage extends Controller
             App::path(),
             "storage/assets/",
             $args->dirname,
-            $this->replaceFilename($args->filename),
+            $this->replaceFilename($args->filename)
         );
         return $app->clientFileDownload($filename);
     }
