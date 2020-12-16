@@ -56,7 +56,7 @@ $app = Basicis::createApp(
 $app->setControllers([
   //Key required for use in direct calls via Basicis App instance
   // Ex: $app->controller("keyContName@method", [object|array|null] $args)
-  "example" => "App\\Controllers\\Example",
+  "home" => "App\\Controllers\\Home",
   "storage" => "App\\Controllers\\Storage",
   //"App\\Controllers\\Storage",
   //...
@@ -95,11 +95,11 @@ $app->setAfterMiddlewares([
  */
 $app->setViewFilters([
   //here, key is required
-  "isTrue" => function ($test = true) {
-    return $test ? true : false;
+  "isTrue" => function ($value = true) {
+    return $value;
   },
-  "isId" => function ($value) {
-    return is_numeric($value);
+  "isInt" => function ($value) {
+    return $value > 0;
   },
   "isText" => function ($value) {
     return is_string($value) && !is_numeric($value);

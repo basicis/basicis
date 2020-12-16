@@ -1,11 +1,11 @@
-function test() {
-    let testText = "HelloOoo!:) This is the Basicis Framework!"
+let testText = "HelloOoo!:) This is the Basicis Framework!"
 
+function test() {
     console.log(testText)
-    if (!localStorage.getItem("testText")) {
-        alert(testText)
-        localStorage.setItem("testText", testText)
-    }
+}
+
+function msg(){
+    alert(testText);
 }
 
 document.addEventListener("load", test())

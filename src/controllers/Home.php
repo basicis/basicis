@@ -4,7 +4,7 @@ namespace App\Controllers;
 use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
 
-class Example extends Controller
+class Home extends Controller
 {
     /**
      * Function index
@@ -16,7 +16,7 @@ class Example extends Controller
      */
     public function index($app, $args)
     {
-        return $app->view("welcom", ["test" => "Teste OK!"]);
+        return $app->view("welcome");
     }
 
 
@@ -46,7 +46,7 @@ class Example extends Controller
      */
     public function testArgId($app, $args)
     {
-        return $app->view("welcome2", ["test" => $args->id]);
+        return $app->view("demo", ["testArg" => $args->id, "testText" => "Teste OK!"]);
     }
 
 
@@ -60,7 +60,7 @@ class Example extends Controller
      */
     public function testArgText($app, $args)
     {
-        return $app->view("welcome2", ["test" => $args->text]);
+        return $app->view("demo", ["testArg" => $args->text, "testText" => "Teste OK!"]);
     }
 
 
