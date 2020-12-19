@@ -43,10 +43,10 @@ $app = Basicis::createApp(
     [
       "appDescription" => $_ENV['APP_DESCRIPTION'] ?? "Basicis Framework!",
       "mode" => $_ENV['APP_ENV'] ?? "dev",
-      "timezone" => $_ENV["APP_TIMEZONE"] ?? "America/Recife"
+      "timezone" => $_ENV["APP_TIMEZONE"] ?? "America/Recife",
+      "appKey" => $_ENV['APP_KEY']
     ]
 );
-
 
 
 

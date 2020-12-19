@@ -2,15 +2,15 @@
 namespace App\Test\Controllers;
 
 use PHPUnit\Framework\TestCase;
-use App\Controllers\Example;
+use App\Controllers\Home;
 use Basicis\Basicis as App;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class ExampleTest
+ * Class HomeTest
  */
 
-class ExampleTest extends TestCase
+class HomeTest extends TestCase
 {
 
      /**
@@ -23,7 +23,7 @@ class ExampleTest extends TestCase
     /**
      * $controller variable
      *
-     * @var Example
+     * @var Home
      */
     private $controller;
 
@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
     {
         parent::__construct();
 
-        $this->controller = new Example();
+        $this->controller = new Home();
         $this->app = App::createApp();
 
         $this->app->setViewFilters([

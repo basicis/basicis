@@ -9,13 +9,13 @@ use Basicis\Basicis as App;
 /**
  *  Model class
  *
- *  @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="Example")
  */
 class Example extends Model
 {
-
      /**
-      * @ORM\Column(type="varchar")
+      * @ORM\Column(type="string")
       * @ORM\GeneratedValue
       * @var string $name
       */

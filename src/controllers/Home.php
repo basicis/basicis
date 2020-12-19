@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
+use App\Models\Example;
 
 class Home extends Controller
 {
@@ -75,5 +76,23 @@ class Home extends Controller
     public function testJson($app, $args)
     {
         return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
+    }
+
+
+    /**
+     * Function newExample
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/example/add", "GET")
+     */
+    public function newExample($app, $args)
+    {   
+        $example = new Example();
+        $example->setName("Jhon Snow");
+        $success = $example->save();
+        
+        return $app->json(["name" =>  $example->getName(), "success" => $success]);
     }
 }
