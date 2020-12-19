@@ -2,9 +2,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div class="w100l10 center">
-    <h1>Welcome to Basicis Framework!</h1>
+  <h1>Welcome!</h1>
 
-  </div>
   <img width="80" src="/assets/img/logo.png" />
+
+  <p>Teste variable text: <b>{{test}}</b>!</p>
+
+  {% if isTrue(true) == true %}
+    <p>Teste filter function <b>True</b>!</p>
+  {% endif %}
+
+  {% if isTrue(false) == false %}
+    <p>Teste filter function <b>False</b>!</p>
+  {% endif %}
+
 {% endblock %}

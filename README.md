@@ -2,7 +2,7 @@
 # Basicis | Project
 
 <p align="center">
-    <img width="160" src="storage/public/img/logo.png"/>
+    <img width="160" src="storage/assets/img/logo.png"/>
 </p>
 
 <p align="center">
@@ -43,7 +43,7 @@ git clone http://github.com/basicis/basicis.git
 
 ## Docs
 
-Documentation [here](docs/)
+Documentation [here](https://basicis.github.io/basicis/)
 
 ## License
 
