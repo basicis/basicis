@@ -1,0 +1,24 @@
+{%  set title = "Test Variables" %}
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Welcome 2!</h1>
+  <p>Teste variable text: <b>{{testText}}</b>!</p>
+
+  {% if isTrue(true) == true %}
+    <p>Teste filter function isTrue(true): <b>True</b>!</p>
+  {% endif %}
+
+  {% if isTrue(false) == false %}
+    <p>Teste filter function isTrue(false): <b>False</b>!</p>
+  {% endif %}
+
+  {% if isInt(testArg) == 1 %}
+    <p>Test Type Integer: <b>{{testArg}}</b></p>
+  {% endif %}
+
+  {% if isText(testArg) == 1 %}
+    <p>Test Type Text: <b>{{testArg}}</b></p>
+  {% endif %}
+
+  <button class="btn" onclick="msg()" >Test JavaScript file integration</button>
+{% endblock %}

@@ -12,9 +12,10 @@
 
 use Basicis\Basicis as App;
 
-$app = require_once "../bootstrap/app.php";
+//Basicis $app configuration bootstrap
+$app = require_once "../config/app-config.php";
 
-//Run App
+//Run Basicis $app
 if ($app instanceof App) {
     $app->run();
     exit;

@@ -3,8 +3,9 @@ namespace App\Controllers;
 
 use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
+use App\Models\Example;
 
-class Example extends Controller
+class Home extends Controller
 {
     /**
      * Function index
@@ -16,7 +17,7 @@ class Example extends Controller
      */
     public function index($app, $args)
     {
-        return $app->view("welcom", ["test" => "Teste OK!"]);
+        return $app->view("welcome");
     }
 
 
@@ -46,7 +47,7 @@ class Example extends Controller
      */
     public function testArgId($app, $args)
     {
-        return $app->view("welcome2", ["test" => $args->id]);
+        return $app->view("demo", ["testArg" => $args->id, "testText" => "Teste OK!"]);
     }
 
 
@@ -60,7 +61,7 @@ class Example extends Controller
      */
     public function testArgText($app, $args)
     {
-        return $app->view("welcome2", ["test" => $args->text]);
+        return $app->view("demo", ["testArg" => $args->text, "testText" => "Teste OK!"]);
     }
 
 
@@ -75,5 +76,23 @@ class Example extends Controller
     public function testJson($app, $args)
     {
         return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
+    }
+
+
+    /**
+     * Function newExample
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/example/add", "GET")
+     */
+    public function newExample($app, $args)
+    {   
+        $example = new Example();
+        $example->setName("Jhon Snow");
+        $success = $example->save();
+        
+        return $app->json(["name" =>  $example->getName(), "success" => $success]);
     }
 }
