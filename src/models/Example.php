@@ -10,7 +10,7 @@ use Basicis\Basicis as App;
  *  Model class
  *
  * @ORM\Entity
- * @ORM\Table(name="Example")
+ * @ORM\Table(name="ExampleModel")
  */
 class Example extends Model
 {
