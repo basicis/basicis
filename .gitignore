@@ -3,5 +3,7 @@ log/
 docs/
 .env*
 !.env.example
+!.env.test
 storage/public/*
 storage/private/*
+storage/*.db
