@@ -67,7 +67,7 @@ class Storage extends Controller
                 "%s%s%s",
                 $app->path(),
                 "storage/public/",
-                $this->replaceFilename($infile->getClientFilename())
+                urldecode($infile->getClientFilename())
             );
             
             $files[$name] = $app->clientFileupload($infile, strtolower($filename));
@@ -92,7 +92,7 @@ class Storage extends Controller
             "%s%s%s",
             App::path(),
             "storage/public/",
-            $this->replaceFilename($args->filename)
+            urldecode($args->filename)
         );
         return $app->clientFileDownload($filename);
     }
@@ -112,7 +112,7 @@ class Storage extends Controller
             "%s%s%s",
             App::path(),
             "storage/public/",
-            $this->replaceFilename($args->filename)
+            urldecode($args->filename)
         );
 
         //If file exists and this is deleted return success
