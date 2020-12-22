@@ -4,6 +4,7 @@ docs/
 .env*
 !.env.example
 !.env.test
+cache
 storage/public/*
 storage/private/*
 storage/*.db

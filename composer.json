@@ -41,8 +41,7 @@
       "test" : "vendor/bin/phpunit --do-not-cache-result --no-logging test",
       "auto-test" : "bash vendor/bin/test",
       "autotest" : "composer auto-test",
-      "phpcs": "vendor/bin/phpcs --standard=PSR2 src/",
-      "phpcs-test": "vendor/bin/phpcs --standard=PSR2 test/",
+      "phpcs": "vendor/bin/phpcs --standard=PSR2 src/ test/",
       "phpdoc": "vendor/bin/phpdoc-md",
       "doctrine" : "php vendor/bin/doctrine",
       "post-create-project-cmd" : [
