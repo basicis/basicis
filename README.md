@@ -7,3 +7,5 @@
 * [Middlewares\BeforeExample](Middlewares/BeforeExample.md) 
 * [Middlewares\AfterExample](Middlewares/AfterExample.md) 
 * [Middlewares\Example](Middlewares/Example.md) 
+* [Middlewares\Guest](Middlewares/Guest.md) 
+* [Middlewares\Auth](Middlewares/Auth.md) 
