@@ -13,7 +13,7 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/", "GET")
+     * @Route("/", "get, put, patch")
      */
     public function index($app, $args)
     {
@@ -29,7 +29,7 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/home", "GET")
+     * @Route("/home", "get, put, patch", "guest")
      */
     public function home($app, $args)
     {
@@ -43,7 +43,7 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/home/{id}:", "GET")
+     * @Route("/home/{id}:int", "GET", "guest")
      */
     public function testArgId($app, $args)
     {
@@ -88,7 +88,7 @@ class Home extends Controller
      * @Route("/example/add", "GET")
      */
     public function newExample($app, $args)
-    {   
+    {
         $example = new Example();
         $example->setName("Jhon Snow");
         $success = $example->save();

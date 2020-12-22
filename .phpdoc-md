@@ -18,6 +18,8 @@ return (object)[
          '\App\Middlewares\BeforeExample',
          '\App\Middlewares\AfterExample',
          '\App\Middlewares\Example',
+         '\App\Middlewares\Guest',
+         '\App\Middlewares\Auth',
 
         //...
     ],
