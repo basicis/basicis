@@ -26,6 +26,8 @@ use Basicis\Http\Message\ServerRequestFactory;
  * Create an instance of Basicis\Basicis and setting arguments
  * @var Basicis $app
  */
+
+Basicis::loadEnv();
 $app = Basicis::createApp(
     //Creating ServerRequest and Uri into this
     ServerRequestFactory::create(
@@ -41,9 +43,9 @@ $app = Basicis::createApp(
     ->withCookieParams($_COOKIE),
     //Setting app optionals flags
     [
-      "appDescription" => $_ENV['APP_DESCRIPTION'] ?? "Basicis Framework!",
-      "mode" => $_ENV['APP_ENV'] ?? "dev",
-      "timezone" => $_ENV["APP_TIMEZONE"] ?? "America/Recife",
+      "appDescription" => $_ENV['APP_DESCRIPTION'],
+      "mode" => $_ENV['APP_ENV'],
+      "timezone" => $_ENV["APP_TIMEZONE"],
       "appKey" => $_ENV['APP_KEY']
     ]
 );
@@ -77,6 +79,8 @@ $app->setBeforeMiddlewares([
 // Route middlweares
 $app->setRouteMiddlewares([
   //only here, key is required
+  "guest" => "App\\Middlewares\\Guest",
+  "auth" => "App\\Middlewares\\Auth",
   "example" => "App\\Middlewares\\Example",
   //...
 ]);
