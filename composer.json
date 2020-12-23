@@ -3,7 +3,7 @@
   "description": "Basicis PHP Framework | Project",
   "type": "project",
   "license": "MIT",
-  "version": "1.0",
+  "version": "1.0.0",
   "minimum-stability": "dev",
   "authors": [
       {
@@ -38,20 +38,14 @@
       "dev:start" : "bash vendor/bin/server start",
       "dev:stop" : "bash vendor/bin/server stop",
       "dev": "composer dev:start",
-      "test" : "vendor/bin/phpunit --do-not-cache-result --no-logging test",
-      "auto-test" : "bash vendor/bin/test",
-      "autotest" : "composer auto-test",
-      "phpcs": "vendor/bin/phpcs --standard=PSR2 src/ test/",
+      "test": "bash .github/scripts/test.sh",
       "phpdoc": "vendor/bin/phpdoc-md",
       "doctrine" : "php vendor/bin/doctrine",
       "post-create-project-cmd" : [
-        "php -r \"copy('vendor/basicis/core/config/app-config.php', 'config/app-config.php', );\"",
-        "php -r \"copy('vendor/basicis/core/config/cli-config.php', 'config/cli-config.php');\"",
-        "php -r \"copy('vendor/basicis/core/config/db-config.php', 'config/db-config.php');\"",
-        "php -r \"copy('.env.example', '.env.local');\""
+        "php vendor/bin/project-install"
       ],
       "post-autoload-dump" : [
-        
+        "php vendor/bin/project-install"
       ]
   },
   "config": {
