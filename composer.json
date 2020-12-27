@@ -1,6 +1,6 @@
 {
   "name": "basicis/basicis",
-  "description": "Basicis PHP Framework | Project",
+  "description": "Basicis - Project ©",
   "type": "project",
   "license": "MIT",
   "version": "1.0.0",
@@ -26,29 +26,55 @@
   },
 
   "autoload": {
-       "psr-4": {
-            "App\\Controllers\\": "src/controllers/",
-            "App\\Middlewares\\": "src/middlewares/",
-            "App\\Models\\": "src/models/",
-            "App\\Test\\": "test/"
-       }
+    "psr-4": {
+         "App\\": "src/",
+         "Test\\": "test/"
+    }
   },
 
   "scripts": {
-      "dev:start" : "bash vendor/bin/server start",
-      "dev:stop" : "bash vendor/bin/server stop",
-      "dev": "composer dev:start",
-      "test": "bash .github/scripts/test.sh",
-      "phpdoc": "vendor/bin/phpdoc-md",
-      "doctrine" : "php vendor/bin/doctrine",
-      "post-create-project-cmd" : [
-        "php vendor/bin/project-install"
-      ],
-      "post-autoload-dump" : [
-        "php vendor/bin/project-install"
-      ]
+    "phpdoc": "vendor/bin/phpdoc-md -v",
+    "doc": "@phpdoc",
+    "dev-server": "bash vendor/bin/server",
+    "dev:start": "@dev-server start",
+    "dev:stop": "@dev-server stop",
+    "dev": "@dev:start",
+    "doctrine": "vendor/bin/doctrine",
+    "db:info" : "@doctrine orm:info",
+    "db:validate" : "@doctrine orm:validate-schema",
+    "db:create": "@doctrine orm:schema-tool:create",
+    "db:create-dump": "@db:create --dump-sql",
+    "db:update": "@doctrine orm:schema-tool:update",
+    "db:update-forced": "@doctrine orm:schema-tool:update --force",
+    "db:update-dump": "@doctrine orm:schema-tool:update --dump-sql",
+    "db:drop": "@doctrine orm:schema-tool:drop",
+    "db:drop-forced": "@db:drop --force",
+    "db:drop-dump": "@db:drop --dump-sql",
+    "test": [
+        "php vendor/bin/prepare-test",
+        "touch .env.test",
+        "echo APP_ENV=dev > .env.test",
+        "echo DB_DRIVER=pdo_sqlite >> .env.test",
+        "echo DB_PATH=test.db >> .env.test",
+        "unset DATABASE_URL",
+        "touch test.db",
+        "vendor/bin/doctrine orm:schema-tool:create",
+        "vendor/bin/phpcs --standard=PSR2 src/ test/",
+        "vendor/bin/phpunit --do-not-cache-result --no-logging test",
+        "php vendor/bin/prepare-test"
+    ],
+    "deploy": [
+        "@phpdoc",
+        "cp .github/ghpages.yml docs/_config.yml"
+    ],
+    "post-create-project-cmd" : [
+      "php vendor/bin/project-install"
+    ],
+    "post-autoload-dump" : [
+      "php vendor/bin/project-install"
+    ]
   },
   "config": {
-      "process-timeout": 0
+    "process-timeout": 0
   }
 }

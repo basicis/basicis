@@ -1,5 +1,5 @@
 
-# Basicis | Project
+# Basicis - Project
 
 <p align="center">
     <img width="160" src="storage/assets/img/logo.png"/>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "873834fc1db409a65326c00ea50c6371",
+    "content-hash": "a62d80b6b438523e9aa66ab35bdc19d1",
     "packages": [
         {
             "name": "basicis/core",
@@ -12,18 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/basicis/core.git",
-                "reference": "6a13e1346abf3db2d10176928edc58d9ee31977c"
+                "reference": "7f6a09d6dbe4f4b8b0239475c902babcbb40b5aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/basicis/core/zipball/6a13e1346abf3db2d10176928edc58d9ee31977c",
-                "reference": "6a13e1346abf3db2d10176928edc58d9ee31977c",
+                "url": "https://api.github.com/repos/basicis/core/zipball/7f6a09d6dbe4f4b8b0239475c902babcbb40b5aa",
+                "reference": "7f6a09d6dbe4f4b8b0239475c902babcbb40b5aa",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.7",
                 "firebase/php-jwt": "^5.0",
                 "katzien/php-mime-type": "^2.1",
+                "opis/closure": "^3.1",
                 "php": ">=7.3",
                 "psr/cache": "^1.0",
                 "psr/http-client": "^1.0",
@@ -44,7 +45,9 @@
             "default-branch": true,
             "bin": [
                 "bin/server",
-                "bin/test"
+                "bin/test",
+                "bin/project-install",
+                "bin/prepare-test"
             ],
             "type": "library",
             "autoload": {
@@ -68,7 +71,7 @@
                 "issues": "https://github.com/basicis/core/issues",
                 "source": "https://github.com/basicis/core/tree/master"
             },
-            "time": "2020-12-19T22:44:38+00:00"
+            "time": "2020-12-24T02:21:32+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -1205,6 +1208,72 @@
             "time": "2017-03-23T02:05:33+00:00"
         },
         {
+            "name": "opis/closure",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opis/closure.git",
+                "reference": "06b4961aabf900c72a20b7000bfa10fd7ae3035e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06b4961aabf900c72a20b7000bfa10fd7ae3035e",
+                "reference": "06b4961aabf900c72a20b7000bfa10fd7ae3035e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "^2.0",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opis\\Closure\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                },
+                {
+                    "name": "Sorin Sarca",
+                    "email": "sarca_sorin@hotmail.com"
+                }
+            ],
+            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
+            "homepage": "https://opis.io/closure",
+            "keywords": [
+                "anonymous functions",
+                "closure",
+                "function",
+                "serializable",
+                "serialization",
+                "serialize"
+            ],
+            "support": {
+                "issues": "https://github.com/opis/closure/issues",
+                "source": "https://github.com/opis/closure/tree/master"
+            },
+            "time": "2020-12-05T19:20:15+00:00"
+        },
+        {
             "name": "psr/cache",
             "version": "dev-master",
             "source": {
@@ -2233,12 +2302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "0aeee2f70f4550e6c48c9a796d98f5ceda58dfda"
+                "reference": "5c448a39281b671be2cc8d208e6df75ac2d4b366"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/0aeee2f70f4550e6c48c9a796d98f5ceda58dfda",
-                "reference": "0aeee2f70f4550e6c48c9a796d98f5ceda58dfda",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/5c448a39281b671be2cc8d208e6df75ac2d4b366",
+                "reference": "5c448a39281b671be2cc8d208e6df75ac2d4b366",
                 "shasum": ""
             },
             "require": {
@@ -2306,7 +2375,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-14T17:08:19+00:00"
+            "time": "2020-12-23T15:38:30+00:00"
         },
         {
             "name": "symfony/string",
@@ -3373,12 +3442,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1c03020f6a764553f08baba17d426ea23b2015ee"
+                "reference": "bb889bf0b67340c4634219065f7d5ab46f3672da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1c03020f6a764553f08baba17d426ea23b2015ee",
-                "reference": "1c03020f6a764553f08baba17d426ea23b2015ee",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bb889bf0b67340c4634219065f7d5ab46f3672da",
+                "reference": "bb889bf0b67340c4634219065f7d5ab46f3672da",
                 "shasum": ""
             },
             "require": {
@@ -3468,7 +3537,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-18T12:35:52+00:00"
+            "time": "2020-12-23T06:00:46+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -4562,12 +4631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "42deaa4d61f556ccac9ae2f6bfd91bd8897fcf73"
+                "reference": "78c3820f75c1c0049b84001e34fc013348abd1ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/42deaa4d61f556ccac9ae2f6bfd91bd8897fcf73",
-                "reference": "42deaa4d61f556ccac9ae2f6bfd91bd8897fcf73",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/78c3820f75c1c0049b84001e34fc013348abd1ea",
+                "reference": "78c3820f75c1c0049b84001e34fc013348abd1ea",
                 "shasum": ""
             },
             "require": {
@@ -4650,7 +4719,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-10T21:15:07+00:00"
+            "time": "2020-12-23T15:46:09+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -4818,12 +4887,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "83f3e0da9fe370ff472ac5119f368aa70c8a0521"
+                "reference": "f1cb7a1507a439a78dd77f9a550572a4701e5f6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/83f3e0da9fe370ff472ac5119f368aa70c8a0521",
-                "reference": "83f3e0da9fe370ff472ac5119f368aa70c8a0521",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/f1cb7a1507a439a78dd77f9a550572a4701e5f6b",
+                "reference": "f1cb7a1507a439a78dd77f9a550572a4701e5f6b",
                 "shasum": ""
             },
             "require": {
@@ -4898,7 +4967,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-18T08:03:24+00:00"
+            "time": "2020-12-23T15:46:09+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5408,12 +5477,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "e201353a61ce20c6802d64a4b1d5d659725014da"
+                "reference": "d8856fc1144a86f4d9319303bc42231ff3ae1310"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/e201353a61ce20c6802d64a4b1d5d659725014da",
-                "reference": "e201353a61ce20c6802d64a4b1d5d659725014da",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/d8856fc1144a86f4d9319303bc42231ff3ae1310",
+                "reference": "d8856fc1144a86f4d9319303bc42231ff3ae1310",
                 "shasum": ""
             },
             "require": {
@@ -5548,7 +5617,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-18T12:24:45+00:00"
+            "time": "2020-12-23T15:46:09+00:00"
         },
         {
             "name": "symfony/http-client-contracts",

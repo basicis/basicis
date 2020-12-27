@@ -1,0 +1,14 @@
+{%  set title = "Welcome" %}
+{% extends "layout.html" %}
+
+{% block content %}
+<form method="POST" action="/example">
+  <label for="name">Name</label>
+  <input type="text" name="name" id="nam">
+
+  <label for="email">Name</label>
+  <input type="email" name="email" id="email">
+
+  <input type="submit">
+</form>
+{% endblock %}

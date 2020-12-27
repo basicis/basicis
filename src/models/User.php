@@ -9,7 +9,7 @@ use Basicis\Basicis as App;
 /**
  *  Model class
  * @ORM\Entity
- * @ORM\Table(name="UserModel")
+ * @ORM\Table(name="Users")
  */
 class User extends Auth
 {
