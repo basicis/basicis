@@ -76,5 +76,4 @@ class Home extends Controller
     {
         return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
     }
-
 }

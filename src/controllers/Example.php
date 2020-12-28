@@ -13,11 +13,16 @@ class Example extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/example", "get")
+     * @Route("/examples", "get")
      */
     public function index($app, $args)
     {
-        return $app->json(["examples" => Model::allToArray()]);
+        $models = null;
+        try {
+            $models = Model::allToArray();
+        } catch (\Exception $e) {
+        }
+        return $app->json(["examples" => $models], $models !== null ? 200 : 404);
     }
 
     /**
@@ -30,7 +35,12 @@ class Example extends Controller
      */
     public function getItemById($app, $args)
     {
-        return $app->json(["example" => Model::findOneBy(["id" => $args->id])]);
+        $model = null;
+        try {
+            $model = Model::findOneBy(["id" => $args->id]);
+        } catch (\Exception $e) {
+        }
+        return $app->json(["example" => $model], $model !== null ? 200 : 404);
     }
 
     /**
@@ -70,14 +80,18 @@ class Example extends Controller
      */
     public function create($app, $args)
     {
-        try {
-            (new Model)->setName($args->name)->setEmail($args->email)->save();
-        } catch (\Exception $e) {
-            return $app->json(["example" => null, "success" => false], 406);
+        if (Model::exists(["email" => $args->email])) {
+            return $app->json(null, 406);
         }
 
-        $example = Model::findOneBy(["email" => $args->email]);
-        return $app->json(["example" => $example, "success" => !is_null($example->__toArray())]);
+        try {
+            (new Model)->setName($args->name)->setEmail($args->email)->save();
+            if (Model::exists(["email" => $args->email])) {
+                return $app->json(Model::findOneBy(["email" => $args->email])->__toArray(), 200);
+            }
+        } catch (\Exception $e) {
+            return $app->json(null, 400);
+        }
     }
 
     /**
@@ -95,7 +109,7 @@ class Example extends Controller
             $example->setName($args->name)->setEmail($args->email)->save();
             $example = Model::findOneBy(["id" => $args->id]);
         }
-        return $app->json(["example" => $example, "success" => !is_null($example)]);
+        return $app->json(["example" => $example->__toArray(), "success" => !is_null($example)]);
     }
 
     /**
