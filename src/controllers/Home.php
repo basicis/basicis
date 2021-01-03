@@ -1,9 +1,9 @@
 <?php
 namespace App\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
 use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
-use App\Models\Example;
 
 class Home extends Controller
 {
@@ -13,13 +13,12 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/", "get, put, patch")
+     * @Route("/", "get")
      */
-    public function index($app, $args)
+    public function index(App $app, object $args = null) : ResponseInterface
     {
         return $app->view("welcome");
     }
-
 
 
     /**
@@ -33,7 +32,7 @@ class Home extends Controller
      */
     public function home($app, $args)
     {
-        return $this->index($app, $args);
+        return $app->redirect("/json", "GET", ["test" => true])->withStatus(307);
     }
 
 
@@ -76,23 +75,5 @@ class Home extends Controller
     public function testJson($app, $args)
     {
         return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
-    }
-
-
-    /**
-     * Function newExample
-     *
-     * @param App $app
-     * @param object $args
-     * @return void
-     * @Route("/example/add", "GET")
-     */
-    public function newExample($app, $args)
-    {
-        $example = new Example();
-        $example->setName("Jhon Snow");
-        $success = $example->save();
-        
-        return $app->json(["name" =>  $example->getName(), "success" => $success]);
     }
 }

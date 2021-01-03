@@ -10,15 +10,12 @@
  * @link     https://github.com/basicis/core
  */
 
-use Basicis\Basicis as App;
-
 //Basicis $app configuration bootstrap
 $app = require_once "../config/app-config.php";
 
 //Run Basicis $app
-if ($app instanceof App) {
+if ($app instanceof Basicis\Basicis) {
     $app->run();
     exit;
 }
-
 echo "Error on Start Basicis application!";

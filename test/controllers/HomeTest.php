@@ -1,5 +1,5 @@
 <?php
-namespace App\Test\Controllers;
+namespace Test\Controllers;
 
 use PHPUnit\Framework\TestCase;
 use App\Controllers\Home;
