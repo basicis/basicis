@@ -10,6 +10,7 @@ return (object)[
         '\App\Models\User',
 
         /* App\Controllers */
+        '\App\Controllers\Example',
         '\App\Controllers\Home',
         '\App\Controllers\Storage',
 
