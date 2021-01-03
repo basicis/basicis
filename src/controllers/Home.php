@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
 use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
 
@@ -12,13 +13,12 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/", "get, put, patch")
+     * @Route("/", "get")
      */
-    public function index($app, $args)
+    public function index(App $app, object $args = null) : ResponseInterface
     {
         return $app->view("welcome");
     }
-
 
 
     /**

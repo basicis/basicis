@@ -7,3 +7,4 @@ cache
 storage/public/*
 storage/private/*
 storage/*.db
+.DS_Store

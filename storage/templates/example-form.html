@@ -2,13 +2,29 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form method="POST" action="/example">
-  <label for="name">Name</label>
-  <input type="text" name="name" id="nam">
+  {% if method == "post" %}
+    <h2>Create</h2>
+  {% endif %}
 
-  <label for="email">Name</label>
-  <input type="email" name="email" id="email">
+  {% if method == "patch" or method == "delete" %}
+    <h2>
+      {% if method == "patch" %} Update {% endif %} 
+      {% if method == "delete" %} Delete {% endif %}
+    </h2>
+    <p>Id: {{model.id}} <br>Name: {{model.name | capitalize}}</p><br>
+  {% endif %} 
 
-  <input type="submit">
-</form>
+  <form method="{{method}}" action="/example" prevent>
+    {% if method == "patch" or method == "delete" %}
+      <input disabled class="input-hidden" type="text" name="id" id="id" value="{{model.id}}">
+    {% endif %}
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="{{model.name|capitalize}}">
+
+    <label for="email">Name</label>
+    <input type="email" name="email" id="email" value="{{model.email}}">
+
+    <input type="submit">
+  </form>
 {% endblock %}

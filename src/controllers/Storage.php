@@ -5,6 +5,7 @@ use Basicis\Basicis as App;
 use Basicis\Controller\Controller;
 use Basicis\Http\Message\StreamFactory;
 use Basicis\Http\Message\UploadedFileFactory;
+use Psr\Http\Message\ResponseInterface;
 
 class Storage extends Controller
 {
@@ -27,7 +28,7 @@ class Storage extends Controller
      * @return void
      * @Route("/storage", "GET, "example")
      */
-    public function index($app, $args)
+    public function index(App $app, object $args = null) : ResponseInterface
     {
          //Search and list public files
         $files = [];
@@ -106,7 +107,7 @@ class Storage extends Controller
      * @return void
      * @Route("/storage/{filename}:string", "DELETE")
      */
-    public function delete($app, $args)
+    public function deleteFile($app, $args)
     {
         $filename = sprintf(
             "%s%s%s",

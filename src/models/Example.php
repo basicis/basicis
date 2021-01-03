@@ -8,7 +8,7 @@ use Basicis\Basicis as App;
 use Basicis\Core\Validator;
 
 /**
- *  Model class
+ *  Example class
  *
  * @ORM\Entity
  * @ORM\Table(name="Examples")
@@ -48,7 +48,7 @@ class Example extends Model
      */
     public function setName(string $name) : Example
     {
-        $this->name = $name;
+        $this->name = ucwords($name, " ");
         return $this;
     }
 

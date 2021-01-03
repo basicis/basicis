@@ -44,3 +44,7 @@ p, .message {
   font-weight: lighter;
 }
 
+.input-hidden {
+  visibility: hidden; 
+  position: absolute;
+}

@@ -1,28 +1,32 @@
 <?php
 namespace App\Controllers;
 
-use Basicis\Basicis as App;
+use Psr\Http\Message\ResponseInterface;
+use App\Models\Example as ExampleModel;
+use Basicis\Model\Model;
+use Basicis\Model\Models;
 use Basicis\Controller\Controller;
-use App\Models\Example as Model;
+use Basicis\Basicis as App;
 
+/**
+ *  Example class
+ *
+ * @Model App\Models\Example
+ * @IgnoreAnnotation("Model")
+ */
 class Example extends Controller
 {
     /**
-     * Function index
+     * Function all
      * Get all items
      * @param App $app
-     * @param object $args
+     * @param  array $args
      * @return void
-     * @Route("/examples", "get")
+     * @Route("/example", "get")
      */
-    public function index($app, $args)
+    public function all(App $app, Models $examples = null) : ResponseInterface
     {
-        $models = null;
-        try {
-            $models = Model::allToArray();
-        } catch (\Exception $e) {
-        }
-        return $app->json(["examples" => $models], $models !== null ? 200 : 404);
+        return parent::all($app, $examples);
     }
 
     /**
@@ -33,29 +37,78 @@ class Example extends Controller
      * @return void
      * @Route("/example/{id}:int", "get")
      */
-    public function getItemById($app, $args)
+    public function find(App $app, Model $example = null, object $args = null) : ResponseInterface
     {
-        $model = null;
-        try {
-            $model = Model::findOneBy(["id" => $args->id]);
-        } catch (\Exception $e) {
-        }
-        return $app->json(["example" => $model], $model !== null ? 200 : 404);
+        return parent::find($app, $example, $args);
     }
 
+
     /**
-     * Function getItemByEmail
-     * Get item by email
+     * Function getItemByName
+     * Get item by name
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/example/{email}:email", "get")
+     * @Route("/example/{name}:string", "get")
      */
-    public function getItemByEmail($app, $args)
+    public function getItemByName(App $app, Model $example = null, object $args = null)
     {
-        return $app->json(["example" => Model::findOneBy(["email" => $args->email])]);
+        return parent::find($app, $example, $args);
     }
 
+
+    /**
+     * Function createForm
+     * Create item form view
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/example/create", "get")
+     */
+    public function createForm($app, $args)
+    {
+        return $app->view("example-form", ["method" => "post"]);
+    }
+
+
+    /**
+     * Function updateForm
+     * Update item form view
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/example/update/{id}:int", "get")
+     */
+    public function updateForm($app, $args)
+    {
+        $model = ExampleModel::findOneBy(["id" => $args->id]);
+
+        if ($model instanceof ExampleModel) {
+            return $app->view("example-form", ["method" => "patch", "model" => $model->__toArray()]);
+        }
+
+        return $app->response(404);
+    }
+
+
+    /**
+     * Function deleteForm
+     * Delete item form view
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/example/delete/{id}:int", "get")
+     */
+    public function deleteForm($app, $args)
+    {
+        $model = ExampleModel::findOneBy(["id" => $args->id]);
+
+        if ($model instanceof ExampleModel) {
+            return $app->view("example-form", ["method" => "delete", "model" => $model->__toArray()]);
+        }
+
+        return $app->getResponse(404);
+    }
 
     /**
      * Function setItem
@@ -63,11 +116,11 @@ class Example extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/example/add", "get")
+     * @Route("/example/create", "get")
      */
     public function setItem($app, $args)
     {
-        return $app->view("example-form");
+        return $app->view("example-form", ["method" => "post"]);
     }
 
     /**
@@ -78,20 +131,9 @@ class Example extends Controller
      * @return void
      * @Route("/example", "post")
      */
-    public function create($app, $args)
+    public function create(App $app, object $args = null) : ResponseInterface
     {
-        if (Model::exists(["email" => $args->email])) {
-            return $app->json(null, 406);
-        }
-
-        try {
-            (new Model)->setName($args->name)->setEmail($args->email)->save();
-            if (Model::exists(["email" => $args->email])) {
-                return $app->json(Model::findOneBy(["email" => $args->email])->__toArray(), 200);
-            }
-        } catch (\Exception $e) {
-            return $app->json(null, 400);
-        }
+        return parent::create($app, $args);
     }
 
     /**
@@ -102,14 +144,9 @@ class Example extends Controller
      * @return void
      * @Route("/example", "patch")
      */
-    public function update($app, $args)
+    public function update(App $app, Model $example = null, object $args = null) : ResponseInterface
     {
-        $example = Model::findOneBy(["id" => $args->id]);
-        if ($example instanceof Model) {
-            $example->setName($args->name)->setEmail($args->email)->save();
-            $example = Model::findOneBy(["id" => $args->id]);
-        }
-        return $app->json(["example" => $example->__toArray(), "success" => !is_null($example)]);
+        return parent::update($app, $example, $args);
     }
 
     /**
@@ -120,12 +157,8 @@ class Example extends Controller
      * @return void
      * @Route("/example", "delete")
      */
-    public function delete($app, $args)
+    public function delete(App $app, Model $example = null, object $args = null) : ResponseInterface
     {
-        $example = Model::findOneBy(["id" => $args->id]);
-        if ($example instanceof Model) {
-            $example->delete();
-        }
-        return $app->json(["success" => Model::findOneBy(["id" => $args->id]) === null]);
+        return parent::delete($app, $example, $args);
     }
 }
