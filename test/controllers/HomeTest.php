@@ -70,7 +70,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->index($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -83,7 +83,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->home($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEmpty($response->getBody()->__toString());
+        $this->assertEmpty($response->getBody()->getContents());
         $this->assertEquals(307, $response->getStatusCode());
     }
 
@@ -96,7 +96,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->home2($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(202, $response->getStatusCode());
     }
 
@@ -109,7 +109,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->argId($this->app, (object) ["id" => 1]);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -122,7 +122,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->argText($this->app, (object) ["text" => "Teste Ok!"]);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -134,7 +134,7 @@ class HomeTest extends TestCase
     public function testJson()
     {
         $response = $this->controller->json($this->app);
-        $content = $response->getBody()->__toString();
+        $content = $response->getBody()->getContents();
         $contentArray = (array) json_decode($content);
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertNotEmpty($content);

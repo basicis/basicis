@@ -71,7 +71,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->controller->index($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -86,7 +86,7 @@ class ExampleTest extends TestCase
         $response = $this->controller->create($this->app, (object) []);
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(400, $response->getStatusCode());
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
 
         $response = $this->controller->create($this->app, (object) ["name" => "Jhon S", "email" => "jhon@test.ex"]);
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -101,7 +101,7 @@ class ExampleTest extends TestCase
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(406, $response->getStatusCode());
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
 
         $response = $this->controller->create(
             $this->app,
@@ -111,7 +111,7 @@ class ExampleTest extends TestCase
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(201, $response->getStatusCode());
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
     }
 
     /**

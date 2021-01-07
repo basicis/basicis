@@ -10,8 +10,8 @@ class Guest extends RequestHandler
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        //If app auth === null this not is authenticated by authorization token
-        if ($this->app->auth() === null) {
+        //If header authorization count === 0 this not is authenticated by a token
+        if (count($request->getHeader('authorization')) === 0) {
             return ResponseFactory::create(200);
         }
         return ResponseFactory::create(401);

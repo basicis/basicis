@@ -71,7 +71,7 @@ class StorageTest extends TestCase
     {
         $response = $this->controller->index($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(200, $response->getStatusCode());
     }
 
@@ -94,7 +94,7 @@ class StorageTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
 
-        $files = (json_decode($response->getBody()->__toString()))->data->files;
+        $files = (json_decode($response->getBody()->getContents()))->data->files;
         $this->assertEquals(2, count($files));
     }
 
@@ -110,7 +110,7 @@ class StorageTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals("image/png", $response->getHeader("content-type")[0]);
-        $this->assertEmpty($response->getBody()->__toString());
+        $this->assertEmpty($response->getBody()->getContents());
     }
 
     /**
