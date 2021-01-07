@@ -4,16 +4,15 @@ namespace App\Middlewares;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Basicis\Http\Message\ResponseFactory;
-use Basicis\Http\Server\Middleware;
+use Basicis\Http\Server\RequestHandler;
+use App\Models\User;
 
-class Auth extends Middleware
+class Auth extends RequestHandler
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        // If app auth !== null this is authenticated user by authorization token
-        if ($this->app->auth("App\Models\User") instanceof App\Models\User) {
-            return ResponseFactory::create(200);
+        if (count($request->getHeader('authorization')) >= 1 && new User instanceof AuthInterface) {
+            return User::getUser($request->getHeader('authorization')[0], $this->app->getAppKey());
         }
-        return ResponseFactory::create(401);
     }
 }

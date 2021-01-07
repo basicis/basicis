@@ -9,7 +9,7 @@ $isDevMode = (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === "prod") ? false : 
 return (new DataBase([Basicis::path()."src/"], $isDevMode))->setDBConfig(
     [
        "driver" => $_ENV["DB_DRIVER"] ?? "pdo_sqlite",
-       "path" => isset($_ENV["DB_PATH"]) ? Basicis::path().$_ENV["DB_PATH"] : Basicis::path()."bin/basicis.db", //For sqlite
+       "path" => isset($_ENV["DB_PATH"]) ? Basicis::path().$_ENV["DB_PATH"] : Basicis::path()."bin/basicis.db", //sqlite
        "url" => $_ENV["DATABASE_URL"] ?? null,
     ]
 );

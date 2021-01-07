@@ -1,25 +1,24 @@
 <?php
-return (object)[
-    'rootNamespace' => 'App\', 
-    'destDirectory' => 'docs',
-    'format' => 'github',
-    'classes' => [
-        
-        /* App\Models */
-        '\App\Models\Example',
-        '\App\Models\User',
+return (object) [
+    "rootNamespace" => "App\\",
+    "destDirectory" => "docs",
+    "format" => "github",
+    "classes" => [
+         /* App\Controllers */
+        "App\Controllers\Example",
+        "App\Controllers\Home",
+        "App\Controllers\Storage",
 
-        /* App\Controllers */
-        '\App\Controllers\Example',
-        '\App\Controllers\Home',
-        '\App\Controllers\Storage',
+        /* App\Middlewares */
+        "App\Middlewares\BeforeExample",
+        "App\Middlewares\AfterExample",
+        "App\Middlewares\Example",
+        "App\Middlewares\Guest",
+        "App\Middlewares\Auth",
 
-         /* App\Middlewares */
-         '\App\Middlewares\BeforeExample',
-         '\App\Middlewares\AfterExample',
-         '\App\Middlewares\Example',
-         '\App\Middlewares\Guest',
-         '\App\Middlewares\Auth',
+         /* App\Models */
+        "App\Models\Example",
+        "App\Models\User",
         //...
-    ],
+    ]
 ];

@@ -4,9 +4,9 @@ namespace App\Middlewares;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Basicis\Http\Message\ResponseFactory;
-use Basicis\Http\Server\Middleware;
+use Basicis\Http\Server\RequestHandler;
 
-class BeforeExample extends Middleware
+class BeforeExample extends RequestHandler
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
