@@ -32,7 +32,7 @@ class Storage extends Controller
     {
          //Search and list public files
         $files = [];
-        foreach (glob($app->path() . "storage/public/*") as $file) {
+        foreach (glob($app->path() . "storage/*.*") as $file) {
             $stream = (new StreamFactory)->createStreamFromFile($file, "r");
 
             $files[] = [
@@ -58,20 +58,24 @@ class Storage extends Controller
      * @return void
      * @Route("/storage", "POST")
      */
-    public function upload($app, $args)
+    public function upload(App $app, object $args = null)
     {
         $files = [];
+        foreach ($app->request()->getUploadedFiles() as $key => $infile) {
+            $filename = App::path()."storage/".$infile->getClientFilename();
+            //New filename if this exists
+            if (file_exists($filename)) {
+                $filename = sprintf(
+                    "%s%s%s.%s",
+                    $app->path(),
+                    "storage/",
+                    (new \Datetime($app->getTimezone()))->format("YmdHis"),
+                    pathinfo($infile->getClientFilename(), PATHINFO_EXTENSION)
+                );
+            }
 
-        foreach ($app->request()->getUploadedFiles() as $name => $infile) {
-            //setting path with client uploaded filename
-            $filename = sprintf(
-                "%s%s%s",
-                $app->path(),
-                "storage/public/",
-                urldecode($infile->getClientFilename())
-            );
-            
-            $files[$name] = $app->clientFileupload($infile, strtolower($filename));
+            $files[$key] = $app->clientFileupload($infile, $filename);
+            $files[$key]["name"] = $filename;
         }
 
         //return response ok in json format, with files informations
@@ -87,12 +91,12 @@ class Storage extends Controller
      * @return void
      * @Route("/storage/{filename}:string", "GET")
      */
-    public function download($app, $args)
+    public function download(App $app, object $args = null)
     {
         $filename = sprintf(
             "%s%s%s",
             App::path(),
-            "storage/public/",
+            "storage/",
             urldecode($args->filename)
         );
         return $app->clientFileDownload($filename);
@@ -107,12 +111,12 @@ class Storage extends Controller
      * @return void
      * @Route("/storage/{filename}:string", "DELETE")
      */
-    public function deleteFile($app, $args)
+    public function deleteFile(App $app, object $args = null)
     {
         $filename = sprintf(
             "%s%s%s",
             App::path(),
-            "storage/public/",
+            "storage/",
             urldecode($args->filename)
         );
 
@@ -134,7 +138,7 @@ class Storage extends Controller
      * @return void
      * @Route("/assets/{dirname}:string/{filename}:string", "GET")
      */
-    public function assets($app, $args)
+    public function assets(App $app, object $args = null)
     {
         $filename = sprintf(
             "%s%s%s/%s",

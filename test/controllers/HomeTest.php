@@ -12,7 +12,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class HomeTest extends TestCase
 {
-
      /**
      * $app variable
      *
@@ -42,8 +41,8 @@ class HomeTest extends TestCase
             "isTrue" => function ($test = true) {
                 return $test ? true : false;
             },
-            "isId" => function ($value) {
-                return is_numeric($value);
+            "isInt" => function ($value) {
+                return $value > 0;
             },
             "isText" => function ($value) {
                 return is_string($value) && !is_numeric($value);
@@ -52,6 +51,15 @@ class HomeTest extends TestCase
         ]);
     }
 
+    /**
+     * Funtion testConstruct
+     *
+     * @return void
+     */
+    public function testConstruct()
+    {
+        $this->assertInstanceof(Home::class, $this->controller);
+    }
 
     /**
      * Function testIndex
@@ -60,15 +68,77 @@ class HomeTest extends TestCase
      */
     public function testIndex()
     {
-        $this->assertInstanceOf(
-            ResponseInterface::class,
-            $this->controller->index(
-                $this->app,
-                (object) [
-                    "teste" => "ok!",
-                    "teste2" =>"ok2!"
-                ]
-            )
-        );
+        $response = $this->controller->index($this->app);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * Function testHome
+     *
+     * @return void
+     */
+    public function testHome()
+    {
+        $response = $this->controller->home($this->app);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEmpty($response->getBody()->__toString());
+        $this->assertEquals(307, $response->getStatusCode());
+    }
+
+    /**
+     * Function testHome2
+     *
+     * @return void
+     */
+    public function testHome2()
+    {
+        $response = $this->controller->home2($this->app);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertEquals(202, $response->getStatusCode());
+    }
+
+    /**
+     * Function testArgId
+     *
+     * @return void
+     */
+    public function testArgId()
+    {
+        $response = $this->controller->argId($this->app, (object) ["id" => 1]);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * Function testArgText
+     *
+     * @return void
+     */
+    public function testArgText()
+    {
+        $response = $this->controller->argText($this->app, (object) ["text" => "Teste Ok!"]);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotEmpty($response->getBody()->__toString());
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * Function testJson
+     *
+     * @return void
+     */
+    public function testJson()
+    {
+        $response = $this->controller->json($this->app);
+        $content = $response->getBody()->__toString();
+        $contentArray = (array) json_decode($content);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertNotEmpty($content);
+        $this->assertEquals(["test" => "Test OK!", "test2" => "Test OK2!"], (array) $contentArray["data"]);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

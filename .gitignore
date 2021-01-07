@@ -3,8 +3,8 @@ log/
 docs/
 .env*
 !.env.example
-cache
+cache/
+storage/*.*
 storage/public/*
 storage/private/*
-storage/*.db
 .DS_Store
