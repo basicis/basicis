@@ -1,29 +1,28 @@
 {
   "name": "basicis/basicis",
-  "description": "Basicis - Project ©",
+  "description": "Basicis PHP Framework - Project ©",
   "type": "project",
   "license": "MIT",
   "version": "1.0.0",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "authors": [
       {
-          "name": "Messias Dias",
-          "email": "messiasdias.ti@gmail.com"
+        "name": "Messias Dias",
+        "email": "messiasdias.ti@gmail.com"
       }
   ],
-
   "require": {
-      "php": "^7.3",
-      "basicis/core" : "*"
+    "php": "^7.3",
+    "basicis/core" : "dev-master"
   },
-
   "autoload": {
     "psr-4": {
-         "App\\": "src/",
-         "Test\\": "test/"
+        "App\\Models\\": "src/models/",
+        "App\\Controllers\\": "src/controllers/",
+        "App\\Middlewares\\": "src/middlewares/",
+        "Test\\": "test/"
     }
   },
-
   "scripts": {
     "phpdoc": "vendor/bin/phpdoc-md -v",
     "doc": "@phpdoc",
@@ -43,21 +42,21 @@
     "db:drop-forced": "@db:drop --force",
     "db:drop-dump": "@db:drop --dump-sql",
     "test": [
-        "php vendor/bin/prepare-test",
-        "touch .env.test",
-        "echo APP_ENV=dev > .env.test",
-        "echo DB_DRIVER=pdo_sqlite >> .env.test",
-        "echo DB_PATH=storage/test.db >> .env.test",
-        "unset DATABASE_URL",
-        "touch storage/test.db",
-        "vendor/bin/doctrine orm:schema-tool:create",
-        "vendor/bin/phpunit --do-not-cache-result --no-logging test",
-        "vendor/bin/phpcs --standard=PSR2 src/ test/",
-        "php vendor/bin/prepare-test"
+      "php vendor/bin/prepare-test",
+      "touch .env.test",
+      "echo APP_ENV=dev > .env.test",
+      "echo DB_DRIVER=pdo_sqlite >> .env.test",
+      "echo DB_PATH=storage/test.db >> .env.test",
+      "unset DATABASE_URL",
+      "touch storage/test.db",
+      "vendor/bin/doctrine orm:schema-tool:create",
+      "vendor/bin/phpunit --do-not-cache-result --no-logging test",
+      "vendor/bin/phpcs --standard=PSR2 src/ test/",
+      "php vendor/bin/prepare-test"
     ],
     "deploy": [
-        "@phpdoc",
-        "cp .github/ghpages.yml docs/_config.yml"
+      "@phpdoc",
+      "cp .github/ghpages.yml docs/_config.yml"
     ],
     "post-create-project-cmd" : [
       "php vendor/bin/project-install"

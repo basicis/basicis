@@ -8,13 +8,19 @@ use Basicis\Basicis as App;
 use Basicis\Core\Validator;
 
 /**
- *  Example class
- *
+ * Example class
+ * @ORM\MappedSuperclass
  * @ORM\Entity
  * @ORM\Table(name="Examples")
  */
 class Example extends Model
 {
+    /**
+     * $protected variable
+     *
+     * @var array
+     */
+    protected $protecteds = ["email"];
     /**
       * @ORM\Column(type="string")
       * @ORM\GeneratedValue

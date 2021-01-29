@@ -1,0 +1,22 @@
+{%  set title = "Router Map" %}
+{% extends "layout.twig" %}
+
+{% block content %}
+  <div class="w100l100 map">
+    <h1>Router Map</h1>
+    <table>
+      <tr class="hd">
+        <td>Url</td>
+        <td>Method</td>
+        <td>Middlewares</td>
+      <tr>
+      {% for route in routes %}
+        <tr>
+          <td>{{route.url}}</td>
+          <td>{{route.method}}</td>
+          <td>{{route.middlewares}}</td>
+        <tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
