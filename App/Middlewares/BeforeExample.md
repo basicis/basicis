@@ -1,9 +1,9 @@
-# App\Middlewares\Example  
+# App\Middlewares\BeforeExample  
 
 
 
 ## Implements:
-Psr\Http\Server\MiddlewareInterface, Psr\Http\Server\RequestHandlerInterface
+Basicis\Http\Server\MiddlewareInterface
 
 ## Extend:
 
@@ -18,8 +18,10 @@ Basicis\Http\Server\Middleware
 
 | Name | Description |
 |------|-------------|
-|handle|Function handle
-Handles a request and produces a response.|
+|__invoke|Function process
+Process an incoming server request a alias to process method|
+|pipeLine|Funtion setPipeLine
+Handle all middlewares|
 |process|Function process
 Process an incoming server request.|
 

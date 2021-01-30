@@ -3,7 +3,7 @@
 
 
 ## Implements:
-Basicis\Controller\ControllerInterface
+Basicis\Controller\ControllerInterface, Basicis\Http\Server\RequestHandlerInterface
 
 ## Extend:
 
@@ -14,7 +14,7 @@ Basicis\Controller\Controller
 | Name | Description |
 |------|-------------|
 |[assets](#storageassets)|Function assets|
-|[delete](#storagedelete)|Function delete|
+|[deleteFile](#storagedeletefile)|Function delete|
 |[download](#storagedownload)|Function download|
 |[upload](#storageupload)|Function upload|
 
@@ -22,7 +22,26 @@ Basicis\Controller\Controller
 
 | Name | Description |
 |------|-------------|
-|index|Abstract method, this must be implemented according to the ControllerInterface|
+|__invoke|Function handle
+Handles a request and produces a response.|
+|all|Function all
+Find all a model items of the specified class|
+|create|Function create
+Creates a model of the specified class|
+|delete|Function delete
+Delete a model of the specified class|
+|extractUniqueColumns|Function extractUniqueColumns
+Extract Unique Columns of model class and return these as array|
+|find|Function find
+Find one a model item of the specified class|
+|getModelByAnnotation|Function getModelByAnnotation
+Get annotations model class|
+|handle|Function handle
+Default method|
+|index|Function index
+Default method|
+|update|Function update
+Update a model of the specified class|
 
 
 
@@ -53,12 +72,12 @@ Function assets
 <hr />
 
 
-### Storage::delete  
+### Storage::deleteFile  
 
 **Description**
 
 ```php
-public delete (\App $app, object $args)
+public deleteFile (\App $app, object $args)
 ```
 
 Function delete 
