@@ -24,7 +24,11 @@
     }
   },
   "scripts": {
-    "phpdoc": "vendor/bin/phpdoc-md -v",
+    "phpdoc": [
+      "rm -rf docs/",
+      "vendor/bin/phpdoc-md -v",
+      "php vendor/bin/doc-readme"
+  ],
     "doc": "@phpdoc",
     "dev-server": "bash vendor/bin/server",
     "dev:start": "@dev-server start",
@@ -59,7 +63,8 @@
       "cp .github/ghpages.yml docs/_config.yml"
     ],
     "post-create-project-cmd" : [
-      "php vendor/bin/project-install"
+      "php vendor/bin/project-install",
+      "php vendor/bin/project-post-install"
     ],
     "post-autoload-dump" : [
       "php vendor/bin/project-install"
