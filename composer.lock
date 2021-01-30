@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "025875be64548c015caf8ba642a37821",
+    "content-hash": "d0982490394ccf2fc0bb9dda0788221f",
     "packages": [
         {
             "name": "basicis/core",
@@ -4711,7 +4711,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3"
+        "php": ">=7.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
