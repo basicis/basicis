@@ -1,6 +1,6 @@
 <?php
 return (object) [
-    "rootNamespace" => "App\\",
+    "rootNamespace" => "",
     "destDirectory" => "docs",
     "format" => "github",
     "classes" => [

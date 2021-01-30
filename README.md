@@ -21,7 +21,6 @@
 </p>
 
 
-## About
 Basicis is a library open source, which follows as [PSR's - PHP Standards Recommendations](https://www.php-fig.org/psr), focusing on web applications and rest api's.
 As the name says, it is made to be basic and direct.
 
