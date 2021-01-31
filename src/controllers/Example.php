@@ -2,11 +2,9 @@
 namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
-use App\Models\Example as ExampleModel;
-use Basicis\Model\Model;
-use Basicis\Model\Models;
 use Basicis\Controller\Controller;
 use Basicis\Basicis as App;
+use App\Models\Example as Model;
 
 /**
  *  Example class
@@ -21,12 +19,12 @@ class Example extends Controller
      * Get all items
      * @param App $app
      * @param  array $args
-     * @return void
-     * @Route("/example", "get")
+     * @return ResponseInterface
+     * @Route("/example/{offset}:int/{limit}:int", "get")
      */
-    public function all(App $app, Models $examples = null) : ResponseInterface
+    public function all(App $app, object $args = null) : ResponseInterface
     {
-        return parent::all($app, $examples);
+        return $app->json(Model::paginate($args->limit ?? 10, ($args->offset ?? 1) - 1));
     }
 
     /**
@@ -34,12 +32,12 @@ class Example extends Controller
      * Get item by ID
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/{id}:int", "get")
      */
-    public function find(App $app, Model $example = null, object $args = null) : ResponseInterface
+    public function find(App $app, object $args = null) : ResponseInterface
     {
-        return parent::find($app, $example, $args);
+        return parent::find($app, $args);
     }
 
 
@@ -48,12 +46,12 @@ class Example extends Controller
      * Get item by name
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/{name}:string", "get")
      */
-    public function getItemByName(App $app, Model $example = null, object $args = null)
+    public function getItemByName(App $app, object $args = null) : ResponseInterface
     {
-        return parent::find($app, $example, $args);
+        return parent::find($app, $args);
     }
 
 
@@ -62,10 +60,10 @@ class Example extends Controller
      * Create item form view
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/create", "get")
      */
-    public function createForm($app, $args)
+    public function createForm(App $app, object $args = null) : ResponseInterface
     {
         return $app->view("example-form", ["method" => "post"]);
     }
@@ -76,17 +74,21 @@ class Example extends Controller
      * Update item form view
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/update/{id}:int", "get")
      */
-    public function updateForm($app, $args)
+    public function updateForm(App $app, object $args = null) : ResponseInterface
     {
-        $model = ExampleModel::findOneBy(["id" => $args->id]);
-
-        if ($model instanceof ExampleModel) {
-            return $app->view("example-form", ["method" => "patch", "model" => $model->__toArray()]);
+        $model = Model::findOneBy(["id" => $args->id]);
+        if ($model instanceof Model) {
+            return $app->view(
+                "example-form",
+                [
+                    "method" => "patch",
+                    "model" => $model->__toArray()
+                ]
+            );
         }
-
         return $app->response(404);
     }
 
@@ -96,17 +98,21 @@ class Example extends Controller
      * Delete item form view
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/delete/{id}:int", "get")
      */
-    public function deleteForm($app, $args)
+    public function deleteForm(App $app, object $args = null) : ResponseInterface
     {
-        $model = ExampleModel::findOneBy(["id" => $args->id]);
-
-        if ($model instanceof ExampleModel) {
-            return $app->view("example-form", ["method" => "delete", "model" => $model->__toArray()]);
+        $model = Model::findOneBy(["id" => $args->id]);
+        if ($model instanceof Model) {
+            return $app->view(
+                "example-form",
+                [
+                    "method" => "delete",
+                    "model" => $model->__toArray()
+                ]
+            );
         }
-
         return $app->getResponse(404);
     }
 
@@ -115,10 +121,10 @@ class Example extends Controller
      * Set item form view
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example/create", "get")
      */
-    public function setItem($app, $args)
+    public function setItem(App $app, object $args = null) : ResponseInterface
     {
         return $app->view("example-form", ["method" => "post"]);
     }
@@ -128,7 +134,7 @@ class Example extends Controller
      * Create item
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example", "post")
      */
     public function create(App $app, object $args = null) : ResponseInterface
@@ -141,12 +147,12 @@ class Example extends Controller
      * Update item
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example", "patch")
      */
-    public function update(App $app, Model $example = null, object $args = null) : ResponseInterface
+    public function update(App $app, object $args = null) : ResponseInterface
     {
-        return parent::update($app, $example, $args);
+        return parent::update($app, $args);
     }
 
     /**
@@ -154,11 +160,11 @@ class Example extends Controller
      * Delete item
      * @param App $app
      * @param object $args
-     * @return void
+     * @return ResponseInterface
      * @Route("/example", "delete")
      */
-    public function delete(App $app, Model $example = null, object $args = null) : ResponseInterface
+    public function delete(App $app, object $args = null) : ResponseInterface
     {
-        return parent::delete($app, $example, $args);
+        return parent::delete($app, $args);
     }
 }

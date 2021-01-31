@@ -26,11 +26,11 @@ class Storage extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/storage", "GET, "example")
+     * @Route("/storage", "GET", "example")
      */
     public function index(App $app, object $args = null) : ResponseInterface
     {
-         //Search and list public files
+        //Search and list public files
         $files = [];
         foreach (glob($app->path() . "storage/*.*") as $file) {
             $stream = (new StreamFactory)->createStreamFromFile($file, "r");
@@ -129,8 +129,7 @@ class Storage extends Controller
         return $app->json(["success" => false], 404, "File not found!");
     }
 
-
-     /**
+    /**
      * Function assets
      *
      * @param App $app
@@ -141,12 +140,12 @@ class Storage extends Controller
     public function assets(App $app, object $args = null)
     {
         $filename = sprintf(
-            "%s%s%s/%s",
+            "%s%s/%s/%s",
             App::path(),
             "storage/assets/",
             $args->dirname,
-            $this->replaceFilename($args->filename)
+            $args->filename
         );
-        return $app->clientFileDownload($filename);
+        return $app->clientFileDownload($filename)->withStatus(200);
     }
 }

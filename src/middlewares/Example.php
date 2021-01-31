@@ -1,21 +1,29 @@
 <?php
 namespace App\Middlewares;
 
+use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Basicis\Http\Message\ResponseFactory;
-use Basicis\Http\Server\RequestHandler;
+use Basicis\Http\Server\Middleware;
 
-class Example extends RequestHandler
+class Example extends Middleware
 {
-    public function handle(ServerRequestInterface $request): ResponseInterface
-    {
+    public function process(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next = null
+    ): ResponseInterface {
         /**
          *
-         * Proccess here
+         * Process here
          * All persoal middleware code implementation
          *
          */
-        return ResponseFactory::create(200);
+        //if ($next instanceof Middleware) {
+          //  return $next($request, $response);
+        //}
+        //return $response;
+        return $next($request, $response);
     }
 }

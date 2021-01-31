@@ -2,17 +2,17 @@
 namespace Test\Controllers;
 
 use PHPUnit\Framework\TestCase;
-use App\Controllers\Example;
+use App\Controllers\User;
 use Basicis\Model\Model;
 use Basicis\Model\Models;
 use Basicis\Basicis as App;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class ExampleTest
+ * Class UserTest
  */
 
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
      /**
      * $app variable
@@ -24,7 +24,7 @@ class ExampleTest extends TestCase
     /**
      * $controller variable
      *
-     * @var Example
+     * @var User
      */
     private $controller;
 
@@ -35,7 +35,7 @@ class ExampleTest extends TestCase
     {
         parent::__construct();
 
-        $this->controller = new Example();
+        $this->controller = new User();
         $this->app = App::createApp();
 
         $this->app->setViewFilters([
@@ -60,7 +60,7 @@ class ExampleTest extends TestCase
      */
     public function testConstruct()
     {
-        $this->assertInstanceof(Example::class, $this->controller);
+        $this->assertInstanceof(User::class, $this->controller);
     }
 
     /**
@@ -73,7 +73,7 @@ class ExampleTest extends TestCase
         $response = $this->controller->index($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEmpty($response->getBody()->getContents());
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(404, $response->getStatusCode());
     }
 
     /**
@@ -90,7 +90,14 @@ class ExampleTest extends TestCase
 
         $response = $this->controller->create(
             $this->app,
-            (object) ["name" => "Jhon S", "email" => "jhon@test.ex"]
+            (object) [
+                "firstName" => "Josef",
+                "lastName" => "Slovac",
+                "email" => "josef@test.ex",
+                "username" => "josef@test.ex",
+                "pass" => "12345678",
+                "role" => 1
+            ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(201, $response->getStatusCode());
@@ -99,7 +106,12 @@ class ExampleTest extends TestCase
         $response = $this->controller->create(
             $this->app,
             (object) [
-                "name" => "David Miguel", "email" => "jhon@test.ex"
+                "firstName" => "Daniel",
+                "lastName" => "Rafael",
+                "email" => "josef@test.ex",
+                "username" => "josef@test.ex",
+                "pass" => "12345678",
+                "role" => 1
             ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -109,7 +121,11 @@ class ExampleTest extends TestCase
         $response = $this->controller->create(
             $this->app,
             (object) [
-                "name" => "David Miguel", "email" => "david@test.ex"
+                "firstName" => "Daniel",
+                "lastName" => "Rafael",
+                "email" => "daniel@test.ex",
+                "pass" => "12345678",
+                "role" => 1
             ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -122,33 +138,37 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+    /*
     public function testUpdate()
     {
         $class = $this->controller->getModelByAnnotation();
-        $model = $class::findOneBy(["email" => "jhon@test.ex"]);
-        
+        $classObj = $class::findOneBy(["email" => "jhon@test.ex"]);
+
         $response = $this->controller->update(
             $this->app,
-            (object) ["name" => "Jhon Snow", "id" => $model->getId()]
+            $classObj,
+            (object) ["name" => "Jhon Snow", "email" => "jhon@test.ex"]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(202, $response->getStatusCode());
 
         $response = $this->controller->update(
             $this->app,
-            (object) ["name" => "Jhon Snow", "email" => "jhon@test.exx", "id" => 200]
+            $class::findOneBy(["email" => "jhon@test.exx"]),
+            (object) ["name" => "Jhon Snow", "email" => "jhon@test.exx"]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
 
-        $model2 = $class::findOneBy(["email" => "david@test.ex"]);
         $response = $this->controller->update(
             $this->app,
-            (object) ["name" => "Jhon Snow", "email" => "david@test.ex", "id" => $model2->getId()]
+            $classObj,
+            (object) ["name" => "Jhon Snow", "email" => "david@test.ex"]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(202, $response->getStatusCode());
     }
+    */
 
 
     /**
@@ -156,16 +176,18 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+    /*
     public function testDelete()
     {
         $response = $this->controller->delete($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(500, $response->getStatusCode());
+        $this->assertEquals(404, $response->getStatusCode());
 
         $class = $this->controller->getModelByAnnotation();
         $classObj = $class::findOneBy(["email" => "jhon@test.ex"]);
         $response = $this->controller->delete(
             $this->app,
+            $class::find($classObj->getId()),
             (object) ["id" => $classObj->getId()]
         );
 
@@ -174,12 +196,14 @@ class ExampleTest extends TestCase
 
         $response = $this->controller->delete(
             $this->app,
+            $class::find($classObj->getId()),
             (object) ["id" => $classObj->getId()]
         );
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
     }
+    */
 
     /**
      * Function testAll
@@ -188,10 +212,9 @@ class ExampleTest extends TestCase
      */
     public function testAll()
     {
-        $response =  $this->controller->all($this->app);
-        $this->assertInstanceof(ResponseInterface::class, $response);
+        $response = $this->controller->all($this->app);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertTrue(is_array((json_decode($response->getBody()))->data));
     }
 
     /**
@@ -201,12 +224,8 @@ class ExampleTest extends TestCase
      */
     public function testFindAndFindOneBy()
     {
-        $response = $this->controller->find($this->app, (object) ["email" => "david@test.ex"]);
-        $response = json_decode($response->getBody());
-        $response2 = $this->controller->find($this->app, (object) ["email" => $response->data->email]);
-
-        $this->assertInstanceof(ResponseInterface::class, $response2);
-        $response2 = json_decode($response2->getBody());
-        $this->assertEquals($response->data, $response2->data);
+        $response = $this->controller->find($this->app, (object) ["email" => "daniel@test.ex"]);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

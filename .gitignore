@@ -7,4 +7,5 @@ cache/
 storage/*.*
 storage/public/*
 storage/private/*
+public/assets
 .DS_Store

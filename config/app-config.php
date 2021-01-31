@@ -17,41 +17,37 @@
  */
 
 require_once "../vendor/autoload.php";
-use Basicis\Basicis as App;
+use Basicis\Basicis;
 use Basicis\Http\Message\Uri;
 use Basicis\Http\Message\ServerRequestFactory;
 
 /** Loading Enviroment variables */
-App::loadEnv();
+Basicis::loadEnv();
+
+/** Create a symlink default from storage/assets to public/ as assets */
+Basicis::createSymLink();
 
 /**
  * $app variable
  * Create an instance of Basicis\Basicis and setting arguments
- * @var App $app
+ * @var Basicis $app
  */
-$app = App::createApp(
-    //Creating ServerRequest and Uri into this
-    ServerRequestFactory::create(
-        $_SERVER['REQUEST_METHOD'],
-        (new Uri())
-        ->withScheme(explode('/', $_SERVER['SERVER_PROTOCOL'])[0] ?? "http")
-        ->withHost($_SERVER['HTTP_HOST'] ?? "localhost")
-        ->withPort($_SERVER['SERVER_PORT'] ?? null)
-        ->withPath($_SERVER['REQUEST_URI'])
-    )
-    ->withHeaders(getallheaders())
-    ->withUploadedFiles($_FILES)
-    ->withCookieParams($_COOKIE),
-    //Setting app optionals flags
+$app = Basicis::createApp(
     [
-      "appDescription" => $_ENV['APP_DESCRIPTION'],
-      "mode" => $_ENV['APP_ENV'],
-      "timezone" => $_ENV["APP_TIMEZONE"],
-      "appKey" => $_ENV['APP_KEY'],
-      "enableCache" => true, //defalut false
+      "server" => $_SERVER,
+      "files" => $_FILES,
+      "cookie" => $_COOKIE,
+      //"cache" => true, //defalut false
+      /*
+      Default token params
+      "token" => [
+        "iss" => APP_DESCRIPTION | "",
+        "expiration" => "+30 minutes",
+        "nobefore" => "now",
+      ]
+      */
     ]
 );
-
 
 
 /**
@@ -63,10 +59,10 @@ $app->setControllers([
   "home" => "App\\Controllers\\Home",
   "storage" => "App\\Controllers\\Storage",
   "example" => "App\\Controllers\\Example",
+  "user" => "App\\Controllers\\User",
   //"App\\Controllers\\Storage",
   //...
 ]);
-
 
 
 /**
@@ -75,27 +71,28 @@ $app->setControllers([
 // Before route middlweares
 $app->setBeforeMiddlewares([
   //key no is required
-  "App\\Middlewares\\BeforeExample",
-  "App\\Middlewares\\Example"
+  new App\Middlewares\BeforeExample,
+  // new App\Middlewares\Foo
   //...
 ]);
 
 // Route middlweares
 $app->setRouteMiddlewares([
   //only here, key is required
-  "guest" => "App\\Middlewares\\Guest",
-  "auth" => "App\\Middlewares\\Auth",
-  "example" => "App\\Middlewares\\Example",
+  "example" => new App\Middlewares\Example,
+  "development" => new App\Middlewares\Development,
+  "guest" => new App\Middlewares\Guest,
+  "auth" => new App\Middlewares\Auth,
   //...
 ]);
 
 // After route middlweares
 $app->setAfterMiddlewares([
   //key no is required
-  "App\\Middlewares\\AfterExample"
+  new App\Middlewares\AfterExample
+  //new App\Middlewares\Bar
   //...
 ]);
-
 
 
 /**

@@ -1,6 +1,6 @@
 <?php
 return (object) [
-    "rootNamespace" => "App\\",
+    "rootNamespace" => "",
     "destDirectory" => "docs",
     "format" => "github",
     "classes" => [
@@ -15,6 +15,7 @@ return (object) [
         "App\Middlewares\Example",
         "App\Middlewares\Guest",
         "App\Middlewares\Auth",
+        "App\Middlewares\Development",
 
          /* App\Models */
         "App\Models\Example",

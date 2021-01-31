@@ -14,8 +14,6 @@ if ($dataBase instanceof DataBase) {
         //Retrun doctrine orm console
         return ConsoleRunner::createHelperSet($entityManager);
     }
-    echo "Erro while loading Doctrine - Entity Manager!\n";
-    exit;
+    exit("Erro while loading Doctrine - Entity Manager!\n");
 }
-echo "Erro while loading file".__DIR__."/db-config.php\n";
-exit;
+exit("Erro while loading file".__DIR__."/db-config.php\n");

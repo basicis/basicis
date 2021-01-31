@@ -130,7 +130,6 @@ class StorageTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
 
-
         $response = $this->controller->assets(
             $this->app,
             (object) [
@@ -139,7 +138,7 @@ class StorageTest extends TestCase
             ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(404, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
 
         $response = $this->controller->assets(
             $this->app,
@@ -159,7 +158,7 @@ class StorageTest extends TestCase
             ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEquals(404, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     /**

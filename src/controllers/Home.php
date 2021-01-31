@@ -29,7 +29,7 @@ class Home extends Controller
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/home", "get", "guest")
+     * @Route("/home", "get", ["guest"])
      */
     public function home(App $app, object $args = null)
     {
@@ -50,7 +50,7 @@ class Home extends Controller
     {
         //Name delimited by ':' ',' or '|'
         //Ex: "welcome:included", "welcome|included" or ...
-        return $app->view("welcome,included")->withStatus(202);
+        return $app->view("welcome, included")->withStatus(202);
     }
 
 
@@ -86,16 +86,67 @@ class Home extends Controller
 
 
     /**
-     * Function testJson
+     * Function json
      *
      * @param App $app
      * @param object $args
      * @return void
-     * @Route("/json", "GET")
+     * @Route("/json", "GET", ["auth"])
      */
     public function json(App $app, object $args = null)
     {
         //Return a view as json
         return $app->json(["test" => "Test OK!", "test2" => "Test OK2!"]);
+    }
+
+    /**
+     * Function getRouterMap
+     * Get All $app router and return a array
+     * @param \Basicis\Basicis $app
+     *
+     * @return array
+     */
+    private function getRouterMap(App $app) : array
+    {
+        //Return router map
+        $routes = [];
+        foreach ($app->getRouter()->getRoutes() as $route) {
+            $item["url"] = $route->getName();
+            $item["method"] = $route->getMethod();
+            $item["middlewares"] = $route->getMiddlewares();
+
+            if (is_array($item["middlewares"])) {
+                $item["middlewares"] = implode(", ", $item["middlewares"]);
+            }
+            $routes[] = $item;
+        }
+        return $routes;
+    }
+
+
+    /**
+     * Function map
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/map", "GET", "development")
+     */
+    public function map(App $app, object $args = null)
+    {
+        return $app->view("map", ["routes" => $this->getRouterMap($app)]);
+    }
+
+    /**
+     * Function mapJson
+     *
+     * @param App $app
+     * @param object $args
+     * @return void
+     * @Route("/map/json", "GET", "development")
+     */
+    public function mapJson(App $app, object $args = null)
+    {
+        return $app->json(["routes" => $this->getRouterMap($app)]);
     }
 }

@@ -83,7 +83,7 @@ class HomeTest extends TestCase
     {
         $response = $this->controller->home($this->app);
         $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertEmpty($response->getBody()->getContents());
+        $this->assertNotEmpty($response->getBody()->getContents());
         $this->assertEquals(307, $response->getStatusCode());
     }
 

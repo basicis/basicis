@@ -5,13 +5,8 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 #content{
-  height: 90vh;
+  min-height: 90vh;
   padding: 20px;
-}
-#footer{
-  height: 10vh;
-}
-#content, #footer{
   box-sizing: border-box !important;
   padding: 20px;
   width: 100%;
@@ -22,6 +17,11 @@ body{
 
 #content h2 {
   color: rgba(0,0,0,.3);
+}
+
+#footer{
+  position: relative !important;
+  padding: 10px;
 }
 
 .w100l100 {
@@ -47,4 +47,33 @@ p, .message {
 .input-hidden {
   visibility: hidden; 
   position: absolute;
+}
+
+.map {
+  justify-content: flex-start !important;
+  flex-direction: column !important;
+}
+
+.map table {
+  border: solid 1px #ccc;
+  border-spacing: 0px;
+  min-width: 80%;
+}
+
+
+.map tr td{
+  font-size: .95rem;
+}
+
+.map .hd > td{
+  background-color: #ccc;
+  border: solid 1px white;
+  color: white;
+  font-size: .9rem !important;
+}
+
+.map table td {
+  border: solid 1px #ccc;
+  border-spacing: 1px;
+  padding: 4px;
 }
