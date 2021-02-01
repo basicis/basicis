@@ -1,8 +1,8 @@
 
-# Basicis - Project
+# Get Started
 
 <p align="center">
-    <img width="160" src="storage/assets/img/logo.png"/>
+    <img width="80" src="storage/assets/img/logo.png"/>
 </p>
 
 <p align="center">
@@ -24,8 +24,8 @@
 Basicis is a library open source, which follows as [PSR's - PHP Standards Recommendations](https://www.php-fig.org/psr), focusing on web applications and rest api's.
 As the name says, it is made to be basic and direct.
 
-## Get Started
-Cteate a new project with Composer
+
+Create a new project with Composer:
 ```bash
 composer create-project basicis/basicis <app_dir_name>
 ```
