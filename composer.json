@@ -1,10 +1,16 @@
 {
   "name": "basicis/basicis",
-  "description": "Basicis PHP Framework - Project ©",
+  "description": "Basicis PHP Framework - Project",
+  "keywords": ["Basicis", "php", "project", "framework", "psr"],
   "type": "project",
   "license": "MIT",
-  "version": "1.0.0",
   "minimum-stability": "stable",
+  "prefer-stable": true,
+  "homepage": "https://basicis.github.io/basicis/",
+  "support": {
+      "issues": "https://github.com/basicis/basicis/issues",
+      "source": "https://github.com/basicis/basicis"
+  },
   "authors": [
       {
         "name": "Messias Dias",
@@ -12,14 +18,23 @@
       }
   ],
   "require": {
-    "php": ">=7.3",
-    "basicis/core" : "dev-master"
+    "php": ">=7.3|>=8.0",
+    "basicis/core" : "^v1.0-alpha"
+  },
+  "require-dev": {
+    "clean/phpdoc-md": "~0.19.1",
+    "phpunit/phpunit": "^9.2.6",
+    "squizlabs/php_codesniffer": "3.*"
   },
   "autoload": {
     "psr-4": {
         "App\\Models\\": "src/models/",
-        "App\\Controllers\\": "src/controllers/",
         "App\\Middlewares\\": "src/middlewares/",
+        "App\\Controllers\\": "src/controllers/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
         "Test\\": "test/"
     }
   },
